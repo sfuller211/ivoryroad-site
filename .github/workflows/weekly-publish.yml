@@ -1,0 +1,44 @@
+name: Weekly publish
+
+# Articles in _export/articles-meta.tsv with status "scheduled" go live on the
+# first build after their published date. Cloudflare only rebuilds when
+# something tells it to, so this pings a Cloudflare Pages deploy hook every
+# Monday morning.
+#
+# One-time setup:
+#   Cloudflare Pages > your project > Settings > Builds & deployments >
+#     Deploy hooks > Add deploy hook  (branch: main). Copy the URL.
+#   GitHub > this repo > Settings > Secrets and variables > Actions >
+#     New repository secret, named CF_DEPLOY_HOOK, paste the URL.
+
+on:
+  schedule:
+    # 12:00 UTC every Monday = 7:00 AM Central (6:00 AM in winter).
+    # GitHub runs cron in UTC and does not adjust for daylight saving.
+    - cron: '0 12 * * 1'
+  workflow_dispatch:        # lets you publish on demand from the Actions tab
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the secret is set
+        run: |
+          if [ -z "${{ secrets.CF_DEPLOY_HOOK }}" ]; then
+            echo "CF_DEPLOY_HOOK is not set. See the setup notes at the top of"
+            echo "this file. Nothing was deployed."
+            exit 1
+          fi
+
+      - name: Ask Cloudflare to rebuild
+        run: |
+          code=$(curl -s -o /tmp/out -w '%{http_code}' -X POST \
+                 "${{ secrets.CF_DEPLOY_HOOK }}")
+          echo "Cloudflare responded $code"
+          cat /tmp/out
+          echo
+          if [ "$code" -lt 200 ] || [ "$code" -ge 300 ]; then
+            echo "Deploy hook failed."
+            exit 1
+          fi
+          echo "Rebuild queued. Any article whose date has arrived is now live."
