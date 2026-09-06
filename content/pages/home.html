@@ -1,0 +1,142 @@
+<section class="section section--hero s-cream hero">
+  <div class="wrap">
+    <h1>Welcome to Ivory Road</h1>
+    <p class="hero__sub">We create things that matter.<br>Resources for the seasons of life that shape you.</p>
+    <p class="hero__note">Christian books for teen boys, creative coloring books, and lifestyle gifts.<br><span class="note-strong">All from one family brand.</span></p>
+    <div class="btns btns--center">
+      <a class="btn" href="/pages/real-talk">Discover Real Talk</a>
+      <a class="btn btn--ghost" href="/pages/ruby-doodle">Discover Ruby Doodle</a>
+    </div>
+    <div class="hero__media"><img src="/static/images/hero-home.jpg" alt="Warm entryway of a home, sunlight across the floor" width="1600" height="700"></div>
+  </div>
+</section>
+
+<section class="section s-sage">
+  <div class="wrap">
+    <div class="statement">
+      <h2>Every collection we create begins with the same belief.</h2>
+      <p class="lede">The things we invite into our homes, our relationships,<br>and our most meaningful moments should be created with intention.</p>
+      <p>We started Ivory Road because we wanted to share what God had given us.<br>Not keep it to ourselves.</p>
+      <p>That belief shapes everything we create. Each Ivory Road collection is designed to serve a different season of life while remaining rooted in the same purpose.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section s-cream">
+  <div class="wrap">
+    <div class="intro"><p class="eyebrow">What We Create</p></div>
+    <div class="collections">
+      <div class="collection">
+        <h3>Real Talk</h3>
+        <div class="collection__media"><img src="/static/images/card-real-talk.png" alt="The complete four book Real Talk series for teen boys" loading="lazy"></div>
+        <p>For parents of teen boys. Books and tools that help your son understand who he is, how he feels, and what faith looks like in real life.</p>
+        <a class="btn" href="/pages/real-talk">Discover Real Talk</a>
+      </div>
+      <div class="collection">
+        <h3>Ruby Doodle</h3>
+        <div class="collection__media"><img src="/static/images/card-ruby-doodle.png" alt="Ruby Doodle coloring books for kids and adults" loading="lazy"></div>
+        <p>For the moments that need to slow down. Coloring books for kids and adults who love to create, imagine, and color their world.</p>
+        <a class="btn" href="/pages/ruby-doodle">Discover Ruby Doodle</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split split--flip split--soft">
+      <div class="split__media"><img src="/static/images/scott-melody.jpg" alt="Scott and Melody Fuller, founders of Ivory Road" loading="lazy" width="1000" height="1250"></div>
+      <div>
+        <p class="eyebrow">Our Story</p>
+        <h2>Meet Dr. Scott &amp; Melody Fuller</h2>
+        <p>Over the years, God has changed our lives through His truth, His grace, and His faithfulness. He has given us gifts, experiences, and opportunities we never imagined. Not to keep for ourselves, but to share with others.</p>
+        <p>We started Ivory Road because we believe those gifts are meant to serve people. Everything we create is simply another expression of that calling.</p>
+        <ul class="story-lines">
+          <li>Through words that encourage.</li>
+          <li>Through creativity that inspires.</li>
+          <li>Through craftsmanship that honors every moment.</li>
+          <li>Through the quiet acts of kindness that often matter most.</li>
+        </ul>
+        <div class="btns"><a class="btn btn--ghost" href="/pages/about-us">Read our story</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--edge">
+  <div class="quote-rotator" data-rotate="7000">
+    <figure class="is-active">
+      <p class="q-source">Real Talk</p>
+      <blockquote>&ldquo;My 13 year old son is really enjoying this book and I am recommending it to our friends who have teenagers. It&rsquo;s positive and encouraging which is exactly what kids need.&rdquo;</blockquote>
+      <figcaption>Grace M.</figcaption>
+    </figure>
+    <figure>
+      <p class="q-source">Ruby Doodle &middot; Classic Cars Around the World</p>
+      <blockquote>&ldquo;The pictures are so much fun to color. Great for a rainy afternoon with my grandkids.&rdquo;</blockquote>
+      <figcaption>Amazon Reviewer</figcaption>
+    </figure>
+    <figure>
+      <p class="q-source">Real Talk</p>
+      <blockquote>&ldquo;Finally a book that talks to teen boys like they are actually capable of thinking for themselves.&rdquo;</blockquote>
+      <figcaption>Youth Leader</figcaption>
+    </figure>
+    <div class="quote-dots" role="tablist" aria-label="Choose a quote"></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var r = document.querySelector('.quote-rotator');
+  if(!r) return;
+  var slides = r.querySelectorAll('figure');
+  var dots = r.querySelector('.quote-dots');
+  var i = 0, timer;
+  slides.forEach(function(s, n){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Quote ' + (n+1));
+    b.addEventListener('click', function(){ show(n); reset(); });
+    dots.appendChild(b);
+  });
+  function show(n){
+    i = n;
+    slides.forEach(function(s, k){ s.classList.toggle('is-active', k === n); });
+    dots.querySelectorAll('button').forEach(function(b, k){ b.setAttribute('aria-current', k === n ? 'true' : 'false'); });
+  }
+  function next(){ show((i + 1) % slides.length); }
+  function reset(){ clearInterval(timer); timer = setInterval(next, parseInt(r.dataset.rotate, 10) || 7000); }
+  show(0); reset();
+})();
+</script>
+
+<section class="section s-sage">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Free Guides</p>
+      <h2>Start with something free.</h2>
+      <p class="lead-line">No purchase needed.</p>
+      <p>One for parents, one for teen guys, and a set of coloring pages for anyone.</p>
+    </div>
+    <div class="cols">
+      <div>
+        <h3>Hearts &amp; Home</h3>
+        <p>Simple ways to open conversation without pressure, and practical ways to respond to emotions without shutting them down.</p>
+        <div class="btns"><a class="btn" href="https://payhip.com/b/9lzHK" rel="noopener">Get the guide</a></div>
+      </div>
+      <div>
+        <h3>Real Talk Tools</h3>
+        <p>Reflection prompts you can actually use, and real questions about identity and confidence.</p>
+        <div class="btns"><a class="btn" href="https://payhip.com/b/hzJjX" rel="noopener">Get the tools</a></div>
+      </div>
+      <div>
+        <h3>Free Coloring Pages</h3>
+        <p>A free set of pages from the Ruby Doodle collection. Download, print, and color.</p>
+        <div class="btns"><a class="btn" href="https://payhip.com/b/EzoB7" rel="noopener">Get the pages</a></div>
+      </div>
+    </div>
+    <div class="intro after-note">
+      <p class="muted">Downloading adds you to our list. Every so often we may share something new we have made. Nothing else, and you can opt out any time.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+# Built output. Cloudflare Pages runs build.py and generates this itself.
+dist/
+
+# Local scratch
+_to_delete/
+ziXECYbe/
+templates/
+*.zip
+*.tgz
+*.tar.gz
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini

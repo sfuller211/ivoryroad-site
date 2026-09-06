@@ -1,0 +1,401 @@
+/* Ivory Road — site stylesheet
+   Built to the locked spec in [C] Ivory Road Design System Specification.docx (June 30 2026)
+   Type: Lora headings, Inter body, 18px minimum body. No other typefaces.
+   Ivory Road gold #B68756 and Real Talk gold #C9983A are different colors. Never substitute. */
+
+:root{
+  /* Ivory Road (parent brand / site base) */
+  --cream:#EEE6D8;
+  --black:#000000;
+  --burgundy:#530D17;
+  --gold-ir:#B68756;
+  --gray:#F5F5F5;
+  --sage:#EEF1EA;
+  --blue:#E1EDF5;
+
+  /* Real Talk collection */
+  --navy:#1A2744;
+  --gold-rt:#C9983A;
+  --white:#FFFFFF;
+  --offwhite:#F0EAE0;
+
+  --wrap:1120px;
+  --narrow:760px;
+  --step:clamp(1rem,2.5vw,1.75rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--black);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:18px;
+  line-height:1.65;
+}
+img{max-width:100%;height:auto;display:block}
+
+h1,h2,h3,h4,h5,h6{
+  font-family:Lora,Georgia,"Times New Roman",serif;
+  font-weight:600;
+  line-height:1.14;
+  letter-spacing:-.005em;
+  text-transform:none;
+  color:var(--navy);
+  margin:0 0 .55em;
+}
+h1{font-size:clamp(2.4rem,5.4vw,3.9rem)}
+h2{font-size:clamp(1.9rem,4.2vw,3.1rem)}
+h3{font-size:clamp(1.25rem,2.4vw,1.7rem)}
+p{margin:0 0 1.2em}
+a{color:inherit}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.narrow{max-width:var(--narrow);margin:0 auto;padding:0 24px}
+.section{padding:clamp(4rem,9vw,7.5rem) 0}
+.section--tight{padding:clamp(2rem,4vw,3rem) 0}
+.section--hero{padding-bottom:clamp(1.5rem,3vw,2.25rem)}
+.lede{font-size:1.28em;line-height:1.6}
+.muted{opacity:.78}
+.center{text-align:center}
+
+/* ---------- color schemes ---------- */
+.s-cream{background:var(--cream);color:var(--black)}
+.s-gray{background:var(--gray);color:var(--black)}
+.s-sage{background:var(--sage);color:var(--black)}
+.s-blue{background:var(--blue);color:var(--black)}
+.s-burgundy{background:var(--burgundy);color:var(--gold-ir)}
+.s-burgundy h1,.s-burgundy h2,.s-burgundy h3{color:var(--gold-ir)}
+.s-burgundy p{color:#E8DCCB}
+.s-navy{background:var(--navy);color:var(--offwhite)}
+.s-navy h1,.s-navy h2,.s-navy h3{color:var(--gold-rt)}
+.s-navy p{color:var(--offwhite)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;
+  font-family:Inter,sans-serif;
+  font-size:17px;
+  font-weight:600;
+  letter-spacing:.01em;
+  padding:17px 36px;
+  border:2px solid var(--black);
+  background:var(--black);
+  color:var(--cream);
+  text-decoration:none;
+  border-radius:999px;
+  transition:background .15s ease,color .15s ease;
+}
+.btn:hover{background:transparent;color:var(--black)}
+.btn--ghost{background:transparent;color:var(--black)}
+.btn--ghost:hover{background:var(--black);color:var(--cream)}
+.s-navy .btn{background:var(--gold-rt);border-color:var(--gold-rt);color:var(--navy)}
+.s-navy .btn:hover{background:transparent;color:var(--gold-rt)}
+.s-navy .btn--ghost{background:transparent;color:var(--offwhite);border-color:var(--offwhite)}
+.s-navy .btn--ghost:hover{background:var(--offwhite);color:var(--navy)}
+.s-burgundy .btn{background:var(--gold-ir);border-color:var(--gold-ir);color:var(--burgundy)}
+.s-burgundy .btn:hover{background:transparent;color:var(--gold-ir)}
+.btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:2rem}
+
+.split{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.split__media img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:3px}
+.split--flip .split__media{order:2}
+@media (max-width:860px){.split{grid-template-columns:1fr}.split--flip .split__media{order:0}}
+
+/* section intros read better centered, like the current site */
+.intro{max-width:900px;margin:0 auto;text-align:center;padding:0 24px}
+.intro h2{font-size:clamp(2.05rem,4.8vw,3.5rem)}
+.intro p{font-size:1.12em}
+
+/* testimonial */
+.quote{max-width:760px;margin:0 auto;text-align:center}
+.quote blockquote{margin:0;font-family:Lora,Georgia,serif;font-style:italic;font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.45;color:var(--navy)}
+.quote cite{display:block;margin-top:1.2rem;font-family:Inter,sans-serif;font-style:normal;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#6b6355}
+
+/* open routing columns, no boxes */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(2rem,4vw,3.5rem);margin-top:3rem}
+.cols h3{margin-bottom:.6em;font-size:clamp(1.35rem,2.4vw,1.8rem)}
+.cols p{font-size:1.02em}
+
+/* ---------- header ---------- */
+.site-header{background:var(--cream);border-bottom:1px solid rgba(0,0,0,.12)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
+.logo{display:inline-block;line-height:0}
+.logo img{width:150px}
+.nav{display:flex;gap:26px;flex-wrap:wrap;font-size:16px;font-weight:500}
+.nav a{text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent}
+.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--gold-ir)}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--sage);color:var(--black);padding:56px 0 32px;font-size:16px;border-top:1px solid rgba(0,0,0,.12)}
+.site-footer h4{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ir);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--gold-ir)}
+.site-footer a{color:var(--black);text-decoration:none;opacity:.8}
+.site-footer a:hover{opacity:1;text-decoration:underline}
+.foot-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:36px}
+.foot-cols ul{list-style:none;margin:0;padding:0}
+.foot-cols li{margin-bottom:9px}
+.social{display:flex;gap:14px;margin-top:14px;font-size:14px}
+.foot-base{margin-top:44px;padding-top:22px;border-top:1px solid rgba(0,0,0,.15);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:14px;opacity:.8}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;margin-top:2.8rem}
+.card{background:var(--white);border:1px solid rgba(0,0,0,.1);border-radius:3px;padding:34px;display:flex;flex-direction:column}
+.card__label{font-family:Inter,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ir);font-weight:600;margin-bottom:10px}
+.card h3{margin-bottom:.5em}
+.card p{margin-bottom:1.15em}
+.card__link{font-weight:600;text-decoration:none;border-bottom:2px solid var(--gold-ir);align-self:flex-start;padding-bottom:2px;margin-top:auto}
+.card--navy{background:var(--navy);border-color:var(--navy)}
+.card--navy h3{color:var(--gold-rt)}
+.card--navy p{color:var(--offwhite)}
+.card--navy .card__label{color:var(--gold-rt)}
+.card--navy .card__link{color:var(--offwhite);border-bottom-color:var(--gold-rt)}
+.card--sage{background:var(--sage)}
+.card__media{margin:-34px -34px 26px}
+.card__media img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:3px 3px 0 0}
+.card--blue{background:var(--blue)}
+.card--cream{background:var(--cream)}
+.card--gate{border:1px solid rgba(0,0,0,.14);border-top:4px solid var(--gold-ir);padding:36px 32px}
+.card--gate h3{font-size:clamp(1.3rem,2vw,1.6rem)}
+.card--quiet{background:transparent;border-style:dashed;opacity:.75}
+
+/* ---------- book grid ---------- */
+.books{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-top:2.2rem}
+.book{display:flex;flex-direction:column}
+.book img{aspect-ratio:2/3;object-fit:cover;object-position:center top;background:var(--white);border-radius:2px;box-shadow:0 10px 26px rgba(0,0,0,.16)}
+/* Ruby Doodle covers are nearer 3:4 than 2:3, so give them their own box shape
+   and they fill it edge to edge with almost nothing cropped. */
+.books--rd .book img{aspect-ratio:3/4;object-fit:cover;object-position:center}
+.book h3{font-size:1.08rem;margin:.35rem 0 .5em}
+.book .role{margin-top:1.1rem;font-family:Inter,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ir);font-weight:600}
+.book p{font-size:.94rem}
+.book .btns{margin-top:auto;padding-top:1rem;gap:10px}
+.book .btn{font-size:15px;padding:11px 20px}
+
+/* ---------- rule accents ---------- */
+.rule-list{list-style:none;margin:1.6rem 0 0;padding:0}
+.rule-list li{padding:0 0 0 22px;border-left:3px solid var(--gold-ir);margin-bottom:1.15rem}
+.s-navy .rule-list li{border-left-color:var(--gold-rt)}
+
+/* ---------- journal ---------- */
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:36px;margin-top:2.4rem}
+.post-card{display:flex;flex-direction:column;text-decoration:none}
+.post-card img{aspect-ratio:16/9;object-fit:cover;border-radius:2px;margin-bottom:1rem}
+.post-card h3{font-size:1.16rem;margin-bottom:.4em}
+.post-card time{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#6b6355}
+.post-card:hover h3{text-decoration:underline;text-decoration-color:var(--gold-ir);text-underline-offset:3px}
+
+.article{max-width:var(--narrow);margin:0 auto;padding:0 24px}
+.article__meta{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#6b6355;margin-bottom:1rem}
+.article__hero{margin:0 auto 2.4rem}
+.article__hero img{aspect-ratio:16/9;object-fit:cover;border-radius:2px;width:100%}
+.article__body{font-size:1.06rem}
+.article__body h2{margin-top:2.2em;font-size:1.55rem}
+.article__body h3{margin-top:1.8em;font-size:1.2rem}
+.article__body ul{padding-left:1.2em}
+.article__body li{margin-bottom:.5em}
+.article__body a{color:var(--black);text-decoration-color:var(--gold-ir);text-underline-offset:3px}
+.article__body hr{border:0;border-top:1px solid rgba(0,0,0,.15);margin:2.6em 0}
+.article__body img{margin:2em 0;border-radius:2px}
+
+/* ---------- signup ---------- */
+.band-light{background:var(--cream);border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12)}
+/* Accent band. Muted gold #B68756, the Ivory Road accent. Warm contrast against
+   cream without going dark. Black type for contrast. */
+.section--edge{background:var(--gold-ir) !important;color:var(--black)}
+.section--edge h1,.section--edge h2,.section--edge h3{color:var(--black)}
+.section--edge .quote blockquote{color:var(--black)}
+.section--edge p{color:#231a10}
+.section--edge .eyebrow{color:#40301c}
+.section--edge .card__label{color:#40301c}
+.section--edge .rule-list li{border-left-color:var(--black)}
+.section--edge .btn{background:var(--black);border-color:var(--black);color:var(--cream)}
+.section--edge .btn:hover{background:transparent;color:var(--black)}
+.section--edge .btn--ghost{background:transparent;color:var(--black);border-color:var(--black)}
+.section--edge .btn--ghost:hover{background:var(--black);color:var(--gold-ir)}
+.section--edge a{color:var(--black)}
+.section--edge .breadcrumb a{border-bottom-color:var(--black)}
+.signup{background:var(--burgundy);color:var(--gold-ir)}
+.signup .btn{background:var(--gold-ir);border-color:var(--gold-ir);color:var(--burgundy)}
+.signup .btn:hover{background:transparent;color:var(--gold-ir)}
+.signup .btn--ghost{background:transparent;color:var(--gold-ir)}
+.signup .btn--ghost:hover{background:var(--gold-ir);color:var(--burgundy)}
+.signup .eyebrow{color:var(--gold-ir)}
+.signup h2{color:var(--gold-ir)}
+.signup p{color:#E8DCCB}
+.signup-slot{margin-top:1.6rem}
+
+/* ---------- misc ---------- */
+.eyebrow{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold-ir);margin-bottom:14px}
+.s-navy .eyebrow{color:var(--gold-rt)}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:28px;margin-top:1.6rem}
+.stat{border-top:3px solid var(--gold-ir);padding-top:16px}
+.breadcrumb{font-size:15px;margin-bottom:1.4rem}
+.breadcrumb a{text-decoration:none;border-bottom:1px solid var(--gold-ir)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:var(--black);color:var(--cream);padding:10px 16px;z-index:99}
+@media (max-width:640px){
+  .site-header .wrap{justify-content:center}
+  .nav{justify-content:center;gap:18px}
+}
+
+
+/* ---------- announcement bar ---------- */
+.announce{background:var(--black);color:var(--cream);text-align:center;font-size:15px;padding:12px 24px;line-height:1.4}
+.announce a{color:var(--cream);font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold-ir);padding-bottom:1px}
+.announce a:hover{border-bottom-color:var(--cream)}
+
+/* ---------- home hero ---------- */
+.hero{text-align:center}
+.hero h1{font-size:clamp(3rem,8.2vw,6.1rem);letter-spacing:-.02em;margin-bottom:.3em}
+.hero__sub{font-family:Lora,Georgia,serif;font-style:italic;font-size:clamp(1.35rem,3.1vw,2.15rem);line-height:1.38;color:var(--navy);max-width:900px;margin:0 auto .9em}
+.hero__note{max-width:700px;margin:0 auto;font-size:1.05em;opacity:.85}
+.btns--center{justify-content:center}
+.hero__media{margin-top:clamp(2.5rem,5vw,4rem)}
+.hero__media img{width:100%;aspect-ratio:21/9;object-fit:cover;object-position:center 58%;border-radius:3px}
+@media (max-width:640px){.hero__media img{aspect-ratio:4/3}}
+
+/* ---------- wide statement block ---------- */
+.statement{max-width:1000px;margin:0 auto;text-align:center}
+.statement h2{font-size:clamp(2.2rem,5.4vw,4.1rem);margin-bottom:.55em}
+.statement .lede{font-size:clamp(1.15rem,2.1vw,1.45rem);margin-bottom:1.4em}
+.statement p:not(.lede){max-width:760px;margin-left:auto;margin-right:auto;font-size:1.06em;opacity:.9}
+
+/* ---------- collection routing columns ---------- */
+.collections{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(2.2rem,4vw,3.5rem);margin-top:2.4rem}
+.collection{display:flex;flex-direction:column;text-align:center}
+.collection h3{font-size:clamp(1.5rem,2.7vw,2.05rem);margin-bottom:.65em}
+.collection__media{margin-bottom:1.5rem}
+.collection__media img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px}
+.collection__soon{aspect-ratio:1/1;background:var(--sage);border:2px dashed rgba(0,0,0,.22);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold-ir)}
+.collection p{font-size:1.02em;margin-bottom:1.6em}
+.collection .btn{display:block;width:100%;margin-top:auto;text-align:center}
+.btn--disabled{opacity:.45;pointer-events:none}
+
+/* ---------- story lines ---------- */
+.story-lines{list-style:none;margin:1.7rem 0 0;padding:0;font-family:Lora,Georgia,serif;font-size:clamp(1.1rem,2.1vw,1.42rem);line-height:1.5;color:var(--navy)}
+.story-lines li{margin-bottom:.5em}
+
+
+/* ---------- collection page hero label, larger ---------- */
+.eyebrow--lg{font-size:clamp(1.05rem,1.8vw,1.45rem);letter-spacing:.2em;margin-bottom:18px}
+
+/* pull a section up close to the one above it */
+.section--pull{padding-top:clamp(1.5rem,3vw,2.6rem)}
+.section--hero-tight{padding-bottom:clamp(1.5rem,3vw,2.6rem)}
+
+/* ---------- highlighted callout line ---------- */
+.callout{border-left:5px solid var(--gold-ir);padding:.2rem 0 .2rem 22px;margin:2rem 0;font-family:Lora,Georgia,serif;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.45;color:var(--navy)}
+.intro p.callout{text-align:left;max-width:640px;margin-left:auto;margin-right:auto;
+  font-family:Lora,Georgia,serif;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.45;color:var(--navy)}
+.intro p.note-strong,.note-strong{display:inline-block;margin-top:.4em;font-family:Lora,Georgia,serif;
+  font-size:clamp(1.05rem,1.9vw,1.3rem);font-weight:600;color:var(--navy);
+  border-bottom:3px solid var(--gold-ir);padding-bottom:4px}
+
+/* ---------- even button baselines in open columns ---------- */
+.cols > div{display:flex;flex-direction:column}
+.cols > div .btns{margin-top:auto;padding-top:.4rem}
+
+/* ---------- rotating quotes ---------- */
+.quote-rotator{position:relative;max-width:820px;margin:0 auto;text-align:center}
+.quote-rotator figure{margin:0;display:none}
+.quote-rotator figure.is-active{display:block}
+.quote-rotator blockquote{margin:0;font-family:Lora,Georgia,serif;font-style:italic;font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.45;color:var(--black)}
+.quote-rotator figcaption{margin-top:1.1rem;font-family:Inter,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#40301c}
+.quote-dots{display:flex;justify-content:center;gap:10px;margin-top:1.8rem}
+.quote-dots button{width:9px;height:9px;padding:0;border-radius:50%;border:1px solid var(--black);background:transparent;cursor:pointer}
+.quote-dots button[aria-current="true"]{background:var(--black)}
+
+/* bigger lead line in the free section */
+.intro p.lead-line,.lead-line{font-family:Lora,Georgia,serif;font-size:clamp(1.4rem,3vw,2.05rem);
+  line-height:1.25;color:var(--navy);margin-bottom:.35em}
+
+
+/* ---------- Real Talk secondary navigation ---------- */
+.subnav{background:var(--cream);border-bottom:1px solid rgba(0,0,0,.12)}
+.subnav .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 30px;
+  padding-top:14px;padding-bottom:14px}
+.subnav a{font-family:Inter,sans-serif;font-size:15px;font-weight:500;text-decoration:none;
+  color:var(--navy);padding-bottom:3px;border-bottom:2px solid transparent}
+.subnav a:hover{border-bottom-color:var(--gold-ir)}
+.subnav a[aria-current="page"]{border-bottom-color:var(--gold-ir);font-weight:600}
+@media (max-width:640px){.subnav .wrap{gap:8px 18px}.subnav a{font-size:14px}}
+
+/* image beside a feature list */
+.feature{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);
+  gap:clamp(2rem,5vw,4rem);align-items:center}
+.feature--flip .feature__media{order:2}
+.feature__media img{width:100%;aspect-ratio:2/3;object-fit:contain;border-radius:2px;
+  box-shadow:0 12px 30px rgba(0,0,0,.18)}
+@media (max-width:860px){.feature{grid-template-columns:1fr}.feature--flip .feature__media{order:0}
+  .feature__media img{max-width:340px;margin:0 auto}}
+
+.after-note{margin-top:clamp(2rem,4vw,3rem)}
+.after-note p{font-size:.95em;max-width:640px;margin:0 auto}
+
+/* Our Story: keep the photo supporting, not dominant */
+.split--soft{grid-template-columns:minmax(0,1.35fr) minmax(0,0.65fr);gap:clamp(2rem,4vw,3.5rem);align-items:start}
+.split--soft .split__media img{aspect-ratio:1/1;object-fit:cover;max-width:340px;border-radius:2px}
+.split--soft .split__media{margin-top:.6rem}
+@media (max-width:860px){.split--soft{grid-template-columns:1fr}
+  .split--soft .split__media img{max-width:300px;margin:0 auto}}
+
+
+/* ---------- quote source above the quote ---------- */
+.quote-rotator .q-source{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:600;color:#40301c;margin-bottom:1.4rem}
+.quote-rotator figcaption{margin-top:1.1rem}
+
+/* flat cover, no drop shadow (lead magnets, cards) */
+.feature__media--flat img{box-shadow:none}
+
+/* lead magnet covers are landscape-ish, do not crop them into a book shape */
+.book--flat img{aspect-ratio:auto;object-fit:contain;box-shadow:none;background:transparent}
+
+/* emphasis line inside a band */
+.intro p.band-lines,.band-lines{font-family:Lora,Georgia,serif;font-style:italic;
+  font-size:clamp(2.6rem,6.6vw,5rem);line-height:1.06;color:var(--black);margin:0 0 .45em}
+.intro p.band-follow,.band-follow{font-family:Lora,Georgia,serif;
+  font-size:clamp(1.2rem,2.4vw,1.65rem);line-height:1.45;color:var(--black)}
+.band-follow .hl{display:inline-block;font-weight:600;border-bottom:3px solid var(--black);padding-bottom:3px}
+
+/* ---------- article topic filter ---------- */
+.topics{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:2.2rem auto 0;max-width:900px}
+.topics button{font-family:Inter,sans-serif;font-size:14px;font-weight:500;letter-spacing:.02em;
+  padding:9px 20px;border:2px solid var(--navy);border-radius:999px;background:transparent;
+  color:var(--navy);cursor:pointer;transition:background .15s ease,color .15s ease}
+.topics button:hover{background:var(--navy);color:var(--cream)}
+.topics button[aria-pressed="true"]{background:var(--navy);color:var(--cream)}
+.topic-search{display:block;width:100%;max-width:420px;margin:1.6rem auto 0;font-family:Inter,sans-serif;
+  font-size:16px;padding:14px 22px;border:2px solid rgba(0,0,0,.25);border-radius:999px;
+  background:var(--white);color:var(--black)}
+.post-card h3{margin-bottom:.35em}
+.post-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;
+  font-family:Inter,sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#6b6355}
+.post-meta .post-topic{font-weight:600;letter-spacing:.12em;color:var(--gold-ir);
+  border-left:1px solid rgba(0,0,0,.22);padding-left:10px}
+.posts-empty{text-align:center;padding:3rem 0;font-size:1.05em}
+
+/* download cards: show the whole cover, never crop the title off */
+.cards--covers .card__media img{aspect-ratio:4/5;object-fit:contain;background:var(--white);
+  border-radius:3px 3px 0 0;padding:14px}
+
+/* ---- Review pages ---- */
+.review-list{display:grid;gap:12px;margin:22px 0 26px}
+.review-item{display:flex;align-items:center;gap:16px;padding:14px 18px;
+  background:#FFFCF7;border:1px solid #CBB08A;border-radius:6px;
+  box-shadow:0 1px 3px rgba(26,39,68,.05);
+  text-decoration:none;transition:border-color .15s ease,background .15s ease}
+.review-item:hover{background:#FFF;border-color:#B68756;box-shadow:0 3px 10px rgba(26,39,68,.10);text-decoration:none}
+.review-item img{height:80px;width:auto;flex:0 0 auto;border-radius:3px;object-fit:contain;
+  box-shadow:0 1px 4px rgba(26,39,68,.14)}
+.review-item span{display:flex;flex-direction:column;gap:3px;min-width:0}
+.review-item strong{font-family:var(--serif,Lora,Georgia,serif);font-size:1.08rem;
+  font-weight:600;line-height:1.25;color:#1A2744}
+.review-item em{font-style:normal;font-size:.9rem;color:#5A6274}
+.intro p.lead-line,.narrow p.lead-line{font-size:1.05rem;font-weight:600;color:#1A2744;margin-top:26px}
+@media (max-width:520px){
+  .review-item{padding:12px 14px;gap:13px}
+  .review-item img{height:64px}
+  .review-item strong{font-size:1rem}
+}
