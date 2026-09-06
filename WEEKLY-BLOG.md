@@ -64,9 +64,22 @@ Batching is what makes this sustainable. The weekly step is two minutes.
 
 ## Deploying
 
-The site is static, so it cannot publish itself on a schedule. Something has to
-push the new `dist/` folder up. Whichever method you use, the Monday step is
-build, then deploy.
+You do not deploy. Cloudflare does.
+
+The repo is connected to Cloudflare Pages. Cloudflare runs `python3 build.py`
+itself and publishes the result. Two things make it rebuild:
+
+1. **You push to GitHub.** Any change goes live in a couple of minutes.
+2. **The Monday workflow fires.** `.github/workflows/weekly-publish.yml` pings
+   a Cloudflare deploy hook at 12:00 UTC every Monday. That is what makes a
+   scheduled article publish itself on the right day with nobody touching
+   anything. Your computer does not need to be on.
+
+You can also publish on demand: GitHub, Actions tab, "Weekly publish",
+Run workflow.
+
+So the real weekly rhythm is: nothing. You write in batches, queue the dates,
+and Monday takes care of itself.
 
 ## Notes
 
