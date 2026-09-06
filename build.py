@@ -633,7 +633,8 @@ def main():
         "/pages/floral                /                       301\n"
         "/pages/lifestyle             /                       301\n"
         "/pages/studio-work           /                       301\n"
-        "/pages/inspiration           /                       301\n",
+        "/pages/inspiration           /                       301\n"
+        "/blogs/real-talk-articles/when-teen-son-feels-alone  /blogs/real-talk-articles/teen-boy-loneliness-what-god-sees  301\n",
         encoding="utf-8")
 
     n_html = sum(1 for _ in DIST.rglob("index.html"))
