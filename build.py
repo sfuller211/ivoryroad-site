@@ -20,7 +20,7 @@ CONTENT = ROOT / "content" / "pages"
 STATIC = ROOT / "static"
 DIST = ROOT / "dist"
 
-SITE = "https://ivoryroad.shop"
+SITE = "https://www.ivoryroad.shop"
 BLOG = "/blogs/real-talk-articles"
 
 # ---------------------------------------------------------------- pages
