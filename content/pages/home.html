@@ -64,14 +64,51 @@
 </section>
 
 <section class="section section--edge">
-  <div class="quote-rotator">
+  <div class="quote-rotator" data-rotate="7000">
     <figure class="is-active">
       <p class="q-source">Real Talk</p>
       <blockquote>&ldquo;My 13 year old son is really enjoying this book and I am recommending it to our friends who have teenagers. It&rsquo;s positive and encouraging which is exactly what kids need.&rdquo;</blockquote>
       <figcaption>Grace M.</figcaption>
     </figure>
+    <figure>
+      <p class="q-source">Ruby Doodle &middot; Classic Cars Around the World</p>
+      <blockquote>&ldquo;This book has a great list of classic cars! My son and I are having a great time coloring these and talking about each car.&rdquo;</blockquote>
+      <figcaption>nina &middot; Amazon</figcaption>
+    </figure>
+    <figure>
+      <p class="q-source">Ruby Doodle &middot; The Pickup Truck</p>
+      <blockquote>&ldquo;Great for my tween grandson. He needed new ones, because &lsquo;all my old books are scribbled in&rsquo;. Loves it.&rdquo;</blockquote>
+      <figcaption>Nana Baby &middot; Amazon</figcaption>
+    </figure>
+    <div class="quote-dots" role="tablist" aria-label="Choose a quote"></div>
   </div>
 </section>
+
+<script>
+(function(){
+  var r = document.querySelector('.quote-rotator');
+  if(!r) return;
+  var slides = r.querySelectorAll('figure');
+  var dots = r.querySelector('.quote-dots');
+  var i = 0, timer;
+  slides.forEach(function(s, n){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Quote ' + (n+1));
+    b.addEventListener('click', function(){ show(n); reset(); });
+    dots.appendChild(b);
+  });
+  function show(n){
+    i = n;
+    slides.forEach(function(s, k){ s.classList.toggle('is-active', k === n); });
+    dots.querySelectorAll('button').forEach(function(b, k){ b.setAttribute('aria-current', k === n ? 'true' : 'false'); });
+  }
+  function next(){ show((i + 1) % slides.length); }
+  function reset(){ clearInterval(timer); timer = setInterval(next, parseInt(r.dataset.rotate, 10) || 7000); }
+  show(0); reset();
+})();
+</script>
 
 <section class="section s-sage">
   <div class="wrap">
