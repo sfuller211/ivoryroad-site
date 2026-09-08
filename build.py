@@ -17,11 +17,56 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 EXPORT = ROOT / "_export"
 CONTENT = ROOT / "content" / "pages"
+FUNNEL  = ROOT / "content" / "funnel"
 STATIC = ROOT / "static"
 DIST = ROOT / "dist"
 
 SITE = "https://www.ivoryroad.shop"
 BLOG = "/blogs/real-talk-articles"
+
+# ---------------------------------------------------------------- funnel
+# Standalone Real Talk conversion pages. No site chrome, noindex, not in sitemap.
+#
+# Cloudflare Web Analytics has no custom events and does not log query strings,
+# so the funnel is measured entirely by PAGEVIEWS PER PATH. Every step is its own
+# URL. Do not collapse these into one path with UTMs; the UTMs are invisible.
+#
+#   /rt/ /yt/ /tt/ /ig/ /pin/ /fb/  landing, one per traffic source
+#   /rt/thanks/                     signup confirmed (Sender redirects here)
+#   /go/amazon/                     outbound Amazon click
+#
+# Fill these two in before the funnel goes live.
+SENDER_ACTION = ""   # form endpoint from the Sender embed code. Do not guess it.
+AMAZON_URL    = ""   # plain Amazon URL. Never an Associates tag: Amazon
+                     # prohibits Special Links in email.
+
+# path -> value written into the Sender form's hidden "source" field
+FUNNEL_LANDINGS = {
+    "rt":  "direct",
+    "yt":  "youtube",
+    "tt":  "tiktok",
+    "ig":  "instagram",
+    "pin": "pinterest",
+    "fb":  "facebook",
+}
+
+def build_funnel():
+    """Write the standalone funnel pages. Deliberately excluded from sitemap.xml."""
+    if not FUNNEL.exists():
+        print("  !! no content/funnel/, skipping funnel"); return
+    if not SENDER_ACTION or not AMAZON_URL:
+        print("  ** funnel: SENDER_ACTION / AMAZON_URL still blank in build.py")
+
+    landing = (FUNNEL / "landing.html").read_text(encoding="utf-8")
+    for path, source in FUNNEL_LANDINGS.items():
+        write([path], landing.replace("{{SENDER_ACTION}}", SENDER_ACTION)
+                             .replace("{{SOURCE}}", source))
+
+    write(["rt", "thanks"], (FUNNEL / "thanks.html").read_text(encoding="utf-8"))
+    write(["go", "amazon"], (FUNNEL / "go-amazon.html")
+          .read_text(encoding="utf-8").replace("{{AMAZON_URL}}", AMAZON_URL))
+
+    print("  funnel: {} landings + /rt/thanks/ + /go/amazon/".format(len(FUNNEL_LANDINGS)))
 
 # ---------------------------------------------------------------- pages
 # (output path, fragment file, <title>, meta description)
@@ -599,6 +644,9 @@ def main():
               subnav=path if path in SUBNAV_PAGES else None,
               schema=page_schema))
         urls.append("/" + path + "/" if path else "/")
+
+    # funnel (standalone, not added to urls so it stays out of the sitemap)
+    build_funnel()
 
     # articles
     arts = load_articles()

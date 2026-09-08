@@ -64,51 +64,14 @@
 </section>
 
 <section class="section section--edge">
-  <div class="quote-rotator" data-rotate="7000">
+  <div class="quote-rotator">
     <figure class="is-active">
       <p class="q-source">Real Talk</p>
       <blockquote>&ldquo;My 13 year old son is really enjoying this book and I am recommending it to our friends who have teenagers. It&rsquo;s positive and encouraging which is exactly what kids need.&rdquo;</blockquote>
       <figcaption>Grace M.</figcaption>
     </figure>
-    <figure>
-      <p class="q-source">Ruby Doodle &middot; Classic Cars Around the World</p>
-      <blockquote>&ldquo;The pictures are so much fun to color. Great for a rainy afternoon with my grandkids.&rdquo;</blockquote>
-      <figcaption>Amazon Reviewer</figcaption>
-    </figure>
-    <figure>
-      <p class="q-source">Real Talk</p>
-      <blockquote>&ldquo;Finally a book that talks to teen boys like they are actually capable of thinking for themselves.&rdquo;</blockquote>
-      <figcaption>Youth Leader</figcaption>
-    </figure>
-    <div class="quote-dots" role="tablist" aria-label="Choose a quote"></div>
   </div>
 </section>
-
-<script>
-(function(){
-  var r = document.querySelector('.quote-rotator');
-  if(!r) return;
-  var slides = r.querySelectorAll('figure');
-  var dots = r.querySelector('.quote-dots');
-  var i = 0, timer;
-  slides.forEach(function(s, n){
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('role','tab');
-    b.setAttribute('aria-label','Quote ' + (n+1));
-    b.addEventListener('click', function(){ show(n); reset(); });
-    dots.appendChild(b);
-  });
-  function show(n){
-    i = n;
-    slides.forEach(function(s, k){ s.classList.toggle('is-active', k === n); });
-    dots.querySelectorAll('button').forEach(function(b, k){ b.setAttribute('aria-current', k === n ? 'true' : 'false'); });
-  }
-  function next(){ show((i + 1) % slides.length); }
-  function reset(){ clearInterval(timer); timer = setInterval(next, parseInt(r.dataset.rotate, 10) || 7000); }
-  show(0); reset();
-})();
-</script>
 
 <section class="section s-sage">
   <div class="wrap">

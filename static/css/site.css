@@ -179,6 +179,7 @@ a{color:inherit}
 
 /* ---------- journal ---------- */
 .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:36px;margin-top:2.4rem}
+[hidden]{display:none !important}
 .post-card{display:flex;flex-direction:column;text-decoration:none}
 .post-card img{aspect-ratio:16/9;object-fit:cover;border-radius:2px;margin-bottom:1rem}
 .post-card h3{font-size:1.16rem;margin-bottom:.4em}
@@ -398,4 +399,10 @@ a{color:inherit}
   .review-item{padding:12px 14px;gap:13px}
   .review-item img{height:64px}
   .review-item strong{font-size:1rem}
+}
+
+@media (max-width:640px){
+  .section{padding:3rem 0}
+  .section--hero{padding-bottom:2.5rem}
+  .statement{margin-bottom:0}
 }
