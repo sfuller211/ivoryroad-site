@@ -37,8 +37,10 @@ BLOG = "/blogs/real-talk-articles"
 #
 # Fill these two in before the funnel goes live.
 SENDER_ACTION = ""   # form endpoint from the Sender embed code. Do not guess it.
-AMAZON_URL    = ""   # plain Amazon URL. Never an Associates tag: Amazon
-                     # prohibits Special Links in email.
+AMAZON_URL    = "https://www.amazon.com/dp/1970494050"
+                     # Real Talk student book. The other three are surfaced by
+                     # the A+ content on that listing. Plain URL only, never an
+                     # Associates tag: Amazon prohibits Special Links in email.
 
 # path -> value written into the Sender form's hidden "source" field
 FUNNEL_LANDINGS = {
@@ -54,8 +56,10 @@ def build_funnel():
     """Write the standalone funnel pages. Deliberately excluded from sitemap.xml."""
     if not FUNNEL.exists():
         print("  !! no content/funnel/, skipping funnel"); return
-    if not SENDER_ACTION or not AMAZON_URL:
-        print("  ** funnel: SENDER_ACTION / AMAZON_URL still blank in build.py")
+    missing = [n for n, v in (("SENDER_ACTION", SENDER_ACTION),
+                              ("AMAZON_URL", AMAZON_URL)) if not v]
+    if missing:
+        print("  ** funnel: {} still blank in build.py".format(", ".join(missing)))
 
     landing = (FUNNEL / "landing.html").read_text(encoding="utf-8")
     for path, source in FUNNEL_LANDINGS.items():
