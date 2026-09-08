@@ -178,7 +178,7 @@ a{color:inherit}
 .s-navy .rule-list li{border-left-color:var(--gold-rt)}
 
 /* ---------- journal ---------- */
-.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:36px;margin-top:2.4rem}
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:36px;margin-top:2.4rem}
 [hidden]{display:none !important}
 .post-card{display:flex;flex-direction:column;text-decoration:none}
 .post-card img{aspect-ratio:16/9;object-fit:cover;border-radius:2px;margin-bottom:1rem}
