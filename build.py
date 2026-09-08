@@ -339,6 +339,8 @@ SHELL = """<!doctype html>
 {body}
 </main>
 {footer}
+<!-- Cloudflare Web Analytics. No cookies, no cross-site tracking, no personal data. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{"token": "c3c701f8454b49b0bb1cb9bfb6cdb28a"}}'></script>
 </body>
 </html>
 """

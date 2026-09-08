@@ -235,6 +235,10 @@ a{color:inherit}
 .breadcrumb a{text-decoration:none;border-bottom:1px solid var(--gold-ir)}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:12px;top:12px;background:var(--black);color:var(--cream);padding:10px 16px;z-index:99}
+.proof{font-family:Inter,sans-serif;font-size:14px;line-height:1.6;letter-spacing:.01em;
+  color:#6b6355;margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid rgba(107,99,85,.28)}
+.split .proof{max-width:26em}
+
 @media (max-width:640px){
   .site-header .wrap{justify-content:center}
   .nav{justify-content:center;gap:18px}
