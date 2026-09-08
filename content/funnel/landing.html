@@ -26,6 +26,13 @@
   .fnl__list li{position:relative;padding-left:1.5em;margin-bottom:.55em;line-height:1.5}
   .fnl__list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
                         border-radius:50%;background:var(--gold-rt)}
+  .fnl__offer{display:flex;gap:clamp(14px,3.5vw,22px);align-items:flex-start;margin-bottom:1.2em}
+  .fnl__cover{width:clamp(96px,26vw,132px);height:auto;flex:none;border-radius:2px;
+    box-shadow:0 6px 20px rgba(26,39,68,.22)}
+  .fnl__offer h2{margin-top:0}
+  .fnl__series{display:block;width:100%;max-width:420px;height:auto;margin:1.2rem 0 1.6rem;
+    border-radius:3px;opacity:.94}
+
   /* form */
   .fnl__form{display:flex;flex-direction:column;gap:12px}
   .fnl__form label{font-size:15px;font-weight:600}
@@ -69,8 +76,15 @@
 
   <!-- PRIMARY ACTION -->
   <div class="fnl__card">
-    <h2>Real Talk: Hearts &amp; Home</h2>
-    <p>A free guide for parents of teen guys. Short, practical, and written to be used the same week you read it.</p>
+    <div class="fnl__offer">
+      <img class="fnl__cover" src="/static/images/lm-hearts-home.jpg"
+           alt="Cover of Real Talk: Hearts &amp; Home, the free guide for parents of teen guys"
+           width="600" height="776" loading="eager">
+      <div>
+        <h2>Real Talk: Hearts &amp; Home</h2>
+        <p>A free guide for parents of teen guys. Short, practical, and written to be used the same week you read it.</p>
+      </div>
+    </div>
     <ul class="fnl__list">
       <li>Ways to open a conversation that don&rsquo;t feel like an interrogation</li>
       <li>Questions that actually go somewhere past &ldquo;fine&rdquo;</li>
@@ -101,6 +115,9 @@
   <!-- SECONDARY, deliberately quieter -->
   <div class="fnl__more">
     <p>If you already know what you&rsquo;re looking for:</p>
+    <img class="fnl__series" src="/static/images/card-real-talk.png"
+         alt="The four Real Talk books: student book, workbook, parent guide, and leader guide"
+         width="1000" height="1000" loading="lazy">
     <ul>
       <li><a href="/pages/real-talk">See what Real Talk is &rarr;</a></li>
       <li><a href="/go/amazon/">Find the books on Amazon &rarr;</a></li>
@@ -108,7 +125,9 @@
   </div>
 
   <p class="fnl__foot">
-    Ivory Road Resources &middot; <a href="/pages/privacy">Privacy</a>
+    Real Talk &middot; An Ivory Road series<br>
+    Helping families have conversations that matter.<br>
+    <a href="/pages/privacy">Privacy</a> &middot; <a href="mailto:hello@ivoryroad.shop">Contact</a>
   </p>
 
 </main>
