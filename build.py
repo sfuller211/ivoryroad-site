@@ -115,27 +115,31 @@ NAV = [
 ARTICLE_TOPICS = {
     "why-we-created-real-talk":                    "Behind the Series",
     "real-talk-for-teen-girls-is-coming":           "Behind the Series",
-    "hidden-signs-teen-boy-insecurity":             "Confidence",
-    "teen-boy-courage-what-fear-looks-like":        "Confidence",
-    "teen-son-feels-different-uniqueness":          "Identity",
-    "why-teen-boys-wear-masks":                     "Identity",
-    "what-makes-a-man-what-teen-son-believes":      "Identity",
+    "hidden-signs-teen-boy-insecurity":             "Confidence & Identity",
+    "teen-boy-courage-what-fear-looks-like":        "Confidence & Identity",
+    "teen-son-feels-different-uniqueness":          "Confidence & Identity",
+    "why-teen-boys-wear-masks":                     "Confidence & Identity",
+    "what-makes-a-man-what-teen-son-believes":      "Confidence & Identity",
     "what-god-thinks-about-teen-boys":              "Faith",
     "everyday-faith-teen-boys-what-parents-can-do": "Faith",
     "teen-boys-prayer-why-they-go-silent":          "Faith",
-    "teen-son-anger-emotional-signals":             "Emotions",
-    "teen-son-replaying-mistakes-shame":            "Emotions",
-    "teen-boy-failure-what-hes-carrying":           "Emotions",
-    "why-teen-boys-blow-up-over-small-things":      "Emotions",
-    "what-to-do-after-teen-son-blowup":             "Emotions",
-    "teen-boy-conflict-whats-really-happening":     "Relationships",
-    "when-teen-son-feels-alone-what-parents-miss":  "Connection",
-    "when-teen-son-feels-alone":                    "Connection",
-    "stay-connected-teen-son-goes-quiet":           "Connection",
-    "small-signs-teen-son-opening-up":              "Connection",
+    "teen-son-anger-emotional-signals":             "Anger & Emotions",
+    "teen-son-replaying-mistakes-shame":            "Anger & Emotions",
+    "teen-boy-failure-what-hes-carrying":           "Anger & Emotions",
+    "why-teen-boys-blow-up-over-small-things":      "Anger & Emotions",
+    "what-to-do-after-teen-son-blowup":             "Anger & Emotions",
+    "teen-boy-conflict-whats-really-happening":     "Friends & Relationships",
+    "when-teen-son-feels-alone-what-parents-miss":  "Communication",
+    "when-teen-son-feels-alone":                    "Communication",
+    "stay-connected-teen-son-goes-quiet":           "Communication",
+    "small-signs-teen-son-opening-up":              "Communication",
 }
-TOPIC_ORDER = ["Identity", "Emotions", "Confidence", "Faith", "Relationships",
-               "Connection", "Behind the Series"]
+# Filter chips on the Articles page, in display order. Written in the language a
+# parent uses about the problem, not the language the books use about the chapter.
+# "Behind the Series" is deliberately absent: those articles are about Real Talk
+# itself, so they stay in All rather than taking a filter slot.
+TOPIC_ORDER = ["Communication", "Anger & Emotions", "Confidence & Identity",
+               "Friends & Relationships", "Faith"]
 
 # Secondary navigation shown on every Real Talk page, mirroring the live site.
 SUBNAV = [
@@ -530,7 +534,7 @@ def build_journal_index(live):
     <p class="lede">Short, practical pieces on what teen guys are carrying, what it looks like from the outside, and how to stay close while they figure it out.</p>
     <div class="topics">{chips}</div>
     <label class="skip" for="article-search">Search articles</label>
-    <input id="article-search" class="topic-search" type="search" placeholder="Search articles" autocomplete="off">
+    <input id="article-search" class="topic-search" type="search" placeholder="Search anger, friends, confidence, faith..." autocomplete="off">
   </div>
 </section>
 <section class="section--tight section--pull">
