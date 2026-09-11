@@ -33,18 +33,12 @@
   .fnl__series{display:block;width:100%;max-width:420px;height:auto;margin:1.2rem 0 1.6rem;
     border-radius:3px;opacity:.94}
 
-  /* form */
-  .fnl__form{display:flex;flex-direction:column;gap:12px}
-  .fnl__form label{font-size:15px;font-weight:600}
-  .fnl__form input[type=email]{
-    font-family:Inter,sans-serif;font-size:17px;padding:16px 18px;
-    border:2px solid rgba(26,39,68,.28);border-radius:4px;background:#fff;color:var(--navy);width:100%}
-  .fnl__form input[type=email]:focus{outline:none;border-color:var(--navy)}
-  .fnl__submit{
-    font-family:Inter,sans-serif;font-size:18px;font-weight:600;cursor:pointer;
-    padding:18px 28px;border:2px solid var(--gold-rt);background:var(--gold-rt);
-    color:var(--navy);border-radius:999px;width:100%;transition:background .15s,color .15s}
-  .fnl__submit:hover{background:transparent;color:var(--navy)}
+  /* form
+     The form itself is rendered by Sender's script into .sender-form-field.
+     Its fields, labels, button text and colours are set in Sender's form
+     builder, not here, so there are no input or button rules in this file.
+     Only the wrapper is positioned. */
+  .sender-form-field{margin:0}
   .fnl__fine{font-size:14px;line-height:1.5;opacity:.72;margin:.9em 0 0}
   /* secondary links, deliberately quiet */
   .fnl__more{border-top:1px solid rgba(240,234,224,.22);margin-top:clamp(2.5rem,7vw,3.5rem);
@@ -56,6 +50,7 @@
   .fnl__foot{margin-top:clamp(2.5rem,7vw,3.5rem);font-size:14px;opacity:.6}
   .fnl__foot a{color:inherit}
 </style>
+{{SENDER_SCRIPT}}
 </head>
 <body>
 <main class="fnl">
@@ -94,17 +89,17 @@
 
     <!--
       SENDER FORM
-      Replace the action below with the endpoint from your Sender embed code.
-      In Sender, set the form's post-submit redirect to /rt/thanks/ .
+      Sender renders the form into this div with its own script, so there is no
+      action URL here and no fields to keep in sync. The heading, the email and
+      first name fields, the button text and the post-submit redirect to
+      /rt/thanks/ are all set in Sender > Forms > Hearts and Home signup.
       That redirect is what makes signups countable in Cloudflare Web Analytics.
+
+      All six landing paths embed this same form, so Sender cannot tell youtube
+      from tiktok. Source attribution comes from pageviews per path instead,
+      which is the whole reason each source has its own URL.
     -->
-    <form class="fnl__form" action="{{SENDER_ACTION}}" method="post">
-      <label for="email">Where should we send it?</label>
-      <input type="hidden" name="source" value="{{SOURCE}}">
-      <input type="email" id="email" name="email" required autocomplete="email"
-             placeholder="you@example.com" inputmode="email">
-      <button class="fnl__submit" type="submit">Send me the free guide</button>
-    </form>
+    <div class="sender-form-field" data-sender-form-id="{{SENDER_FORM_ID}}"></div>
 
     <p class="fnl__fine">
       It arrives in your inbox in a minute or two. We&rsquo;ll follow up with a few
