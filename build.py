@@ -31,46 +31,109 @@ BLOG = "/blogs/real-talk-articles"
 # so the funnel is measured entirely by PAGEVIEWS PER PATH. Every step is its own
 # URL. Do not collapse these into one path with UTMs; the UTMs are invisible.
 #
-#   /rt/ /yt/ /tt/ /ig/ /pin/ /fb/  landing, one per traffic source
-#   /rt/thanks/                     signup confirmed (Sender redirects here)
-#   /go/amazon/                     outbound Amazon click
+#   /rt-ig/ /rt-fb/ ...  landing, one per social ACCOUNT per platform
+#   /rt/                 landing, catch-all for email signatures and print
+#   /rt/thanks/          signup confirmed (Sender redirects here)
+#   /go/amazon/          outbound Amazon click
 #
-# Fill these two in before the funnel goes live.
-SENDER_ACTION = ""   # form endpoint from the Sender embed code. Do not guess it.
+# Sender embedded form.
+# Sender renders its forms with their own script, so there is no POST endpoint
+# to fill in here. The fields, labels, button text, required flags and the
+# post-submit redirect to /rt/thanks/ all live in Sender's form builder.
+# Both IDs come from Sender > Forms > Publishing settings.
+SENDER_ACCOUNT = "7ecfcf84083377"
+SENDER_FORM_ID = "erkw82"
+
 AMAZON_URL    = "https://www.amazon.com/dp/1970494050"
                      # Real Talk student book. The other three are surfaced by
                      # the A+ content on that listing. Plain URL only, never an
                      # Associates tag: Amazon prohibits Special Links in email.
+CARDS_URL     = "https://payhip.com/b/DBwq3"
+                     # Real Talk Conversation Cards, $7.99. Highest margin thing
+                     # in the funnel: we keep nearly all of it, versus a royalty
+                     # on the books. Linked from /rt/thanks/ via /go/cards/.
 
-# path -> value written into the Sender form's hidden "source" field
-FUNNEL_LANDINGS = {
-    "rt":  "direct",
-    "yt":  "youtube",
-    "tt":  "tiktok",
-    "ig":  "instagram",
-    "pin": "pinterest",
-    "fb":  "facebook",
-}
+# Sender's loader, copied verbatim from their Publishing settings page and left
+# unformatted on purpose: it is full of braces, so it must never go through
+# .format(). The account id is swapped in with .replace() at build time.
+# This goes on the funnel pages ONLY. Sender tells you to put it on every page;
+# there is one form on one page, so site-wide would put a third-party script on
+# all 41 pages for no reason and make the privacy page wrong again.
+SENDER_SCRIPT = """<!-- Sender form loader. Funnel landings only. -->
+<script>
+  (function (s, e, n, d, er) {
+    s['Sender'] = er;
+    s[er] = s[er] || function () {
+      (s[er].q = s[er].q || []).push(arguments)
+    }, s[er].l = 1 * new Date();
+    s[er].on = function(event, callback) {
+      s[er].listeners = s[er].listeners || {};
+      (s[er].listeners[event] = s[er].listeners[event] || []).push(callback);
+    };
+    var a = e.createElement(n),
+        m = e.getElementsByTagName(n)[0];
+    a.async = 1;
+    a.src = d;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+  sender('SENDER_ACCOUNT_ID')
+</script>"""
+
+# One landing path per BRAND per platform. Same page, different URL. Cloudflare
+# does not log query strings, so pageviews on each path ARE the attribution.
+#
+# Prefix = the brand of the CONTENT the visitor just saw, NOT the account it was
+# posted from. On YouTube the link lives in each video's description and on
+# Pinterest in each pin, so one account can carry links for several brands. A
+# Ruby Doodle video on the @ivoryroadshop channel uses /rd-yt; a Real Talk video
+# on that same channel uses /rt-yt. Only TikTok and Instagram collapse brand and
+# account into one, because there the link is the bio and there is only one.
+#
+#   rt Real Talk  |  ir Ivory Road  |  rd Ruby Doodle
+#   ig instagram | fb facebook | tt tiktok | pin pinterest | yt youtube
+#
+# All of these embed the same Sender form, so Sender itself cannot tell them
+# apart. Only Cloudflare can, and only by path.
+#
+# NOT here: Ruby Doodle (/rd-ig /rd-fb /rd-tt /rd-pin /rd-yt). Those must not
+# point at this page. The landing page opens with "He says he's fine" and is
+# about a teenage son; a coloring book follower is the wrong audience for it.
+# Ruby Doodle needs its own destination before any /rd- path is built.
+FUNNEL_LANDINGS = [
+    "rt",                                          # catch-all: signatures, print, anything unlabelled
+    "rt-ig", "rt-fb", "rt-tt", "rt-pin", "rt-yt",  # Real Talk content, wherever it posts from
+    "ir-ig", "ir-fb", "ir-tt", "ir-pin", "ir-yt",  # Ivory Road brand content
+]
 
 def build_funnel():
     """Write the standalone funnel pages. Deliberately excluded from sitemap.xml."""
     if not FUNNEL.exists():
         print("  !! no content/funnel/, skipping funnel"); return
-    missing = [n for n, v in (("SENDER_ACTION", SENDER_ACTION),
-                              ("AMAZON_URL", AMAZON_URL)) if not v]
+    missing = [n for n, v in (("SENDER_ACCOUNT", SENDER_ACCOUNT),
+                              ("SENDER_FORM_ID", SENDER_FORM_ID),
+                              ("AMAZON_URL", AMAZON_URL),
+                              ("CARDS_URL", CARDS_URL)) if not v]
     if missing:
         print("  ** funnel: {} still blank in build.py".format(", ".join(missing)))
 
+    loader = SENDER_SCRIPT.replace("SENDER_ACCOUNT_ID", SENDER_ACCOUNT)
     landing = (FUNNEL / "landing.html").read_text(encoding="utf-8")
-    for path, source in FUNNEL_LANDINGS.items():
-        write([path], landing.replace("{{SENDER_ACTION}}", SENDER_ACTION)
-                             .replace("{{SOURCE}}", source))
+    for path in FUNNEL_LANDINGS:
+        # {{SOURCE}} is the path itself. It ends up in the Sender form's hidden
+        # Source field, so the channel is stored on the subscriber rather than
+        # only counted as a pageview. See the long comment in landing.html.
+        write([path], landing.replace("{{SENDER_SCRIPT}}", loader)
+                             .replace("{{SENDER_FORM_ID}}", SENDER_FORM_ID)
+                             .replace("{{SOURCE}}", path))
 
     write(["rt", "thanks"], (FUNNEL / "thanks.html").read_text(encoding="utf-8"))
     write(["go", "amazon"], (FUNNEL / "go-amazon.html")
           .read_text(encoding="utf-8").replace("{{AMAZON_URL}}", AMAZON_URL))
+    write(["go", "cards"], (FUNNEL / "go-cards.html")
+          .read_text(encoding="utf-8").replace("{{CARDS_URL}}", CARDS_URL))
 
-    print("  funnel: {} landings + /rt/thanks/ + /go/amazon/".format(len(FUNNEL_LANDINGS)))
+    print("  funnel: {} landings + /rt/thanks/ + /go/amazon/ + /go/cards/"
+          .format(len(FUNNEL_LANDINGS)))
 
 # ---------------------------------------------------------------- pages
 # (output path, fragment file, <title>, meta description)
