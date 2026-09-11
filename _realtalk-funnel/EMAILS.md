@@ -1,11 +1,25 @@
 # Real Talk — Hearts & Home welcome sequence
-Five emails. Plain text style, no heavy templates. Sender free plan handles this with time delays only, which is all this needs.
+Six emails. Plain text style, no heavy templates. Sender free plan handles this with time delays only, which is all this needs.
+
+Trigger: added to the **Hearts and Home** group. Delays: 0, 2, 4, 7, 10, 14 days.
 
 **Rules for every email in this sequence**
 - Plain Amazon links only. Never an Associates tag. Amazon prohibits Special Links in email.
 - The Amazon link points at `ivoryroad.shop/go/amazon/`, not directly at Amazon, so the click is countable.
+- The Conversation Cards link points at `ivoryroad.shop/go/cards/` for the same reason.
 - No em dashes.
 - Recognition first. The ask comes last, or not at all.
+
+**On using their first name**
+
+The form collects it and it is required, so `{$firstname}` is always populated.
+
+Use it in **Email 1 and Email 6 only**. Those are the two that ask something of
+the reader: one asks them to reply, the other asks them to buy. A name in all six
+is what makes automated mail feel automated, and by Email 3 it reads as a mail
+merge rather than a person.
+
+Emails 2, 3, 4 and 5 open cold on purpose. They are observations, not approaches.
 
 ---
 
@@ -13,7 +27,7 @@ Five emails. Plain text style, no heavy templates. Sender free plan handles this
 **Subject:** Your guide is here
 **Preview text:** Plus one question, if you have a second
 
-Here it is.
+Here it is, {$firstname}.
 
 [Download Real Talk: Hearts & Home]
 
@@ -131,7 +145,42 @@ Scott
 
 ---
 
-## After day 10
+## Email 6 — Day 14
+**Subject:** The questions, already written down
+**Preview text:** For the nights you cannot think of one
+
+The hardest part of what is in that guide is not agreeing with it. It is
+remembering it at 9:40 on a Tuesday when he is half out of the room and you have
+about eleven seconds.
+
+That is where most good intentions go. Not in disagreement. In the moment passing.
+
+So we wrote the questions down.
+
+**Real Talk Conversation Cards.** Sixty of them, each with a follow-up on the
+back for when the first one gets a one-word answer. You print them, cut them, and
+put them somewhere you will actually reach for them. The glovebox is not a joke.
+Side by side is where these land best.
+
+They are $7.99 and they are yours to print as many times as you want.
+
+[Take a look at the Conversation Cards]
+
+If you already have your own way in, ignore this. The cards are not a system and
+they are not a curriculum. They are a stack of things worth asking, on the nights
+you cannot think of one.
+
+Scott
+
+---
+
+*Link goes to `ivoryroad.shop/go/cards/`, not straight to Payhip, so the click is
+countable. Uses `{$firstname}`? No. This one earns attention with the first two
+lines. A name at the top of a sales email reads as a sales email.*
+
+---
+
+## After day 14
 
 Do not let the list go silent. A list you never mail decays, and the next send lands worse than this one did.
 
