@@ -733,6 +733,10 @@ def main():
 
     # Cloudflare Pages redirects (old paths that are NOT being mirrored)
     (DIST / "_redirects").write_text(
+        # Hearts and Home welcome sequence, Email 1. Points at the hosted PDF
+        # rather than the file directly so the filename can change later
+        # without breaking email that has already gone out.
+        "/guide                       /static/files/real-talk-hearts-and-home.pdf  301\n"
         "/pages/start-here            /pages/real-talk        301\n"
         "/pages/real-talk-resources   /pages/free-guides      301\n"
         "/pages/real-talk-starter-pack /pages/free-guides     301\n"
