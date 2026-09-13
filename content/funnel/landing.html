@@ -12,20 +12,21 @@
 <link rel="stylesheet" href="/static/css/site.css">
 <style>
   /* Funnel page only. Mobile-first, one job. */
-  body{background:var(--navy);color:var(--offwhite)}
+  body{background:var(--cream);color:var(--black)}
   .fnl{max-width:620px;margin:0 auto;padding:clamp(2.25rem,7vw,4rem) 24px clamp(3rem,8vw,5rem)}
   .fnl__mark{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-             color:var(--gold-rt);margin:0 0 clamp(1.75rem,5vw,2.5rem)}
-  .fnl h1{color:var(--gold-rt);font-size:clamp(2.1rem,7.5vw,3.1rem);margin:0 0 .4em}
-  .fnl__lede{font-size:clamp(1.12rem,3.4vw,1.3rem);line-height:1.6;color:var(--offwhite);margin:0 0 1.4em}
-  .fnl__card{background:var(--offwhite);color:var(--navy);border-radius:4px;
-             padding:clamp(1.5rem,5vw,2.25rem);margin:clamp(2rem,6vw,2.75rem) 0}
+             color:var(--gold-ir);margin:0 0 clamp(1.75rem,5vw,2.5rem)}
+  .fnl h1{color:var(--navy);font-size:clamp(2.1rem,7.5vw,3.1rem);margin:0 0 .4em}
+  .fnl__lede{font-size:clamp(1.12rem,3.4vw,1.3rem);line-height:1.6;color:var(--black);margin:0 0 1.4em}
+  .fnl__card{background:var(--white);color:var(--navy);border-radius:4px;
+             padding:clamp(1.5rem,5vw,2.25rem);margin:clamp(2rem,6vw,2.75rem) 0;
+             box-shadow:0 6px 20px rgba(26,39,68,.1)}
   .fnl__card h2{font-size:clamp(1.35rem,4.4vw,1.8rem);color:var(--navy);margin:0 0 .5em}
   .fnl__card p{color:var(--navy);margin:0 0 1.1em}
   .fnl__list{list-style:none;margin:0 0 1.5em;padding:0}
   .fnl__list li{position:relative;padding-left:1.5em;margin-bottom:.55em;line-height:1.5}
   .fnl__list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
-                        border-radius:50%;background:var(--gold-rt)}
+                        border-radius:50%;background:var(--gold-ir)}
   .fnl__offer{display:flex;gap:clamp(14px,3.5vw,22px);align-items:flex-start;margin-bottom:1.2em}
   .fnl__cover{width:clamp(96px,26vw,132px);height:auto;flex:none;border-radius:2px;
     box-shadow:0 6px 20px rgba(26,39,68,.22)}
@@ -41,10 +42,10 @@
   .sender-form-field{margin:0}
   .fnl__fine{font-size:14px;line-height:1.5;opacity:.72;margin:.9em 0 0}
   /* secondary links, deliberately quiet */
-  .fnl__more{border-top:1px solid rgba(240,234,224,.22);margin-top:clamp(2.5rem,7vw,3.5rem);
+  .fnl__more{border-top:1px solid rgba(26,39,68,.15);margin-top:clamp(2.5rem,7vw,3.5rem);
              padding-top:clamp(1.75rem,5vw,2.25rem)}
   .fnl__more p{font-size:15px;opacity:.8;margin:0 0 1em}
-  .fnl__more a{color:var(--gold-rt);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+  .fnl__more a{color:var(--gold-ir);text-decoration:underline;text-underline-offset:3px;font-weight:600}
   .fnl__more li{margin-bottom:.7em;list-style:none}
   .fnl__more ul{padding:0;margin:0}
   .fnl__foot{margin-top:clamp(2.5rem,7vw,3.5rem);font-size:14px;opacity:.6}
