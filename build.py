@@ -746,6 +746,13 @@ def main():
         "/collections/books           /pages/real-talk        301\n"
         "/collections/*               /pages/real-talk        301\n"
         "/products/free-coloring-pages-by-ruby-doodle  https://payhip.com/b/EzoB7  301\n"
+        "/products/the-pickup-truck-a-vintage-collection-of-classic-pickups-digital-pages https://payhip.com/b/E1Bgy 301\n"
+        "/products/classic-cars-around-the-world-a-coloring-book-for-classic-car-enthusiasts-digital-pages https://payhip.com/b/7OLIQ 301\n"
+        "/products/cozy-country-charm-coloring-book-simple-and-serene-escape-to-peaceful-settings-digital-pages https://payhip.com/b/NM0BG 301\n"
+        "/products/winter-fun-a-fun-coloring-and-amazing-activity-book-digital-pages https://payhip.com/b/NbhBd 301\n"
+        "/products/tale-of-two-a-celebration-of-unique-friendships-coloring-book-digital-pages https://payhip.com/b/REnX9 301\n"
+        "/products/toddlers-animal-coloring-book-fun-and-educational-bilingual-english-spanish-digital-pages-copy https://payhip.com/b/YVZJH 301\n"
+        "/products/digital-bundle-the-master-collection-coloring-pages https://payhip.com/b/ME1vx 301\n"
         "/products/*                  /pages/ruby-doodle      301\n"
         "/pages/dr-scott-fuller       /pages/about-us         301\n"
         "/pages/data-sharing-opt-out  /pages/privacy-policy   301\n"
@@ -759,6 +766,7 @@ def main():
         "/pages/lifestyle             /                       301\n"
         "/pages/studio-work           /                       301\n"
         "/pages/inspiration           /                       301\n"
+        "/pages/for-youth-pastors /pages/for-leaders 301\n"
         "/blogs/real-talk-articles/when-teen-son-feels-alone  /blogs/real-talk-articles/teen-boy-loneliness-what-god-sees  301\n",
         encoding="utf-8")
 
