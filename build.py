@@ -53,6 +53,31 @@ CARDS_URL     = "https://payhip.com/b/DBwq3"
                      # in the funnel: we keep nearly all of it, versus a royalty
                      # on the books. Linked from /rt/thanks/ via /go/cards/.
 
+# Every Amazon button on the site routes through one of these instead of linking
+# to amazon.com directly, so the click is a pageview Cloudflare can count.
+# /go/amazon/ above stays as it is: it is the generic one, already printed in
+# email and on the landing page, and it still lands on the student book.
+#
+# The slug, not the ASIN, is what shows up in the Cloudflare pageview report, so
+# the slugs are named after the book. Adding a title means adding a row here and
+# pointing the button at /go/amazon/<slug>/.
+GO_AMAZON = [
+    ("student",             "1970494050"),
+    ("workbook",            "1970494077"),
+    ("parent-guide",        "1970494085"),
+    ("leader-guide",        "1970494093"),
+    ("rd-pickup-truck",     "B0CQF5PRPP"),
+    ("rd-classic-cars",     "B0CGT64CRZ"),
+    ("rd-falling-leaves",   "B0CLP5YYTG"),
+    ("rd-winter-fun",       "B0CJXDSJQJ"),
+    ("rd-bold-blooms",      "B0D7N4PP5H"),
+    ("rd-cozy-country",     "B0DFY1L76J"),
+    ("rd-tale-of-two",      "B0CTHJZFH2"),
+    ("rd-enchanted-realms", "B0CP2V93L2"),
+    ("rd-toddlers-animals", "B0CJXGYFCV"),
+    ("rd-animal-kingdom",   "B0CJXDRWDQ"),
+]
+
 # Sender's loader, copied verbatim from their Publishing settings page and left
 # unformatted on purpose: it is full of braces, so it must never go through
 # .format(). The account id is swapped in with .replace() at build time.
@@ -127,13 +152,16 @@ def build_funnel():
                              .replace("{{SOURCE}}", path))
 
     write(["rt", "thanks"], (FUNNEL / "thanks.html").read_text(encoding="utf-8"))
-    write(["go", "amazon"], (FUNNEL / "go-amazon.html")
-          .read_text(encoding="utf-8").replace("{{AMAZON_URL}}", AMAZON_URL))
+    go_amazon = (FUNNEL / "go-amazon.html").read_text(encoding="utf-8")
+    write(["go", "amazon"], go_amazon.replace("{{AMAZON_URL}}", AMAZON_URL))
+    for slug, asin in GO_AMAZON:
+        write(["go", "amazon", slug],
+              go_amazon.replace("{{AMAZON_URL}}", "https://www.amazon.com/dp/" + asin))
     write(["go", "cards"], (FUNNEL / "go-cards.html")
           .read_text(encoding="utf-8").replace("{{CARDS_URL}}", CARDS_URL))
 
-    print("  funnel: {} landings + /rt/thanks/ + /go/amazon/ + /go/cards/"
-          .format(len(FUNNEL_LANDINGS)))
+    print("  funnel: {} landings + /rt/thanks/ + /go/amazon/ ({} destinations)"
+          " + /go/cards/".format(len(FUNNEL_LANDINGS), len(GO_AMAZON) + 1))
 
 # ---------------------------------------------------------------- pages
 # (output path, fragment file, <title>, meta description)
@@ -370,7 +398,9 @@ FOOTER = [
                    ("For Teen Guys","/pages/for-teen-guys"),("For Leaders","/pages/for-leaders"),
                    ("Free Downloads","/pages/free-guides")],
      [("Instagram","https://www.instagram.com/realtalkbookseries/"),
-      ("Facebook","https://www.facebook.com/realtalkbookseries"),
+      # The vanity URL facebook.com/realtalkbookseries is dead. This page only
+      # resolves by numeric profile id. Do not "tidy" this back to a name.
+      ("Facebook","https://www.facebook.com/profile.php?id=61590076012812"),
       ("TikTok","https://www.tiktok.com/@realtalkbookseries")]),
     ("Ruby Doodle", [("Browse the Collection","https://payhip.com/IvoryRoadDigitalShop"),
                      ("Free Coloring Pages","https://payhip.com/b/EzoB7")], []),
