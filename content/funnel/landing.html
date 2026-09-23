@@ -96,9 +96,11 @@
       /rt/thanks/ are all set in Sender > Forms > Hearts and Home signup.
       That redirect is what makes signups countable in Cloudflare Web Analytics.
 
-      All six landing paths embed this same form, so Sender cannot tell youtube
-      from tiktok. Source attribution comes from pageviews per path instead,
-      which is the whole reason each source has its own URL.
+      Every landing path embeds this same Sender form, so the form itself cannot
+      tell rt-ig from rt-tt. The Source field is filled in by the script at the
+      bottom of this page, which writes the path of the page the visitor is on.
+      Pageviews per path remain the primary measure; the Source field is what
+      carries the channel onto the subscriber record in Sender.
     -->
     <div class="sender-form-field" data-sender-form-id="{{SENDER_FORM_ID}}"></div>
 
@@ -127,6 +129,124 @@
   </p>
 
 </main>
+<!--
+  SOURCE ATTRIBUTION
+  Sender fetches the form markup from its CDN and renders it into an iframe
+  after this page has already been built and served, so build-time template
+  substitution can never reach the fields inside it. That is exactly how the
+  Source field came to render visible and empty: its key in Sender's form
+  builder was left as the literal text "{{source}}", in the belief that build.py
+  would substitute it. build.py only ever sees this file.
+
+  So the fill has to happen in the browser, after Sender renders. This script
+  waits for the field, writes the path of the current landing page into it, and
+  hides the row. The field is matched on its label and placeholder rather than
+  its key, so renaming the key in Sender will not break this again.
+
+  RT_SOURCE is substituted by build.py, once per landing path.
+-->
+<script>
+(function () {
+  var RT_SOURCE = "{{SOURCE}}";
+
+  // If build.py did not substitute, do nothing rather than write a placeholder
+  // into every subscriber record.
+  if (!RT_SOURCE || RT_SOURCE.indexOf("{{") === 0) { return; }
+
+  var DEADLINE = Date.now() + 30000;
+
+  function docs() {
+    var list = [document];
+    var frames = document.querySelectorAll("iframe");
+    for (var i = 0; i < frames.length; i++) {
+      try { if (frames[i].contentDocument) { list.push(frames[i].contentDocument); } }
+      catch (e) { /* cross-origin, not ours */ }
+    }
+    return list;
+  }
+
+  function isSourceField(el) {
+    if (!el || el.tagName !== "INPUT") { return false; }
+    var t = (el.type || "").toLowerCase();
+    if (t === "email" || t === "submit" || t === "button" || t === "checkbox") { return false; }
+    var name = (el.getAttribute("name") || "").toLowerCase();
+    var ph = (el.getAttribute("placeholder") || "").toLowerCase();
+    if (name === "firstname" || name === "lastname") { return false; }
+    if (name.indexOf("source") !== -1 || ph === "source") { return true; }
+    var row = el.closest ? el.closest(".sender-form-field") : null;
+    var label = row ? row.querySelector("label") : null;
+    return !!(label && label.textContent.trim().toLowerCase() === "source");
+  }
+
+  function findField() {
+    var all = docs();
+    for (var i = 0; i < all.length; i++) {
+      var inputs = all[i].querySelectorAll("input");
+      for (var j = 0; j < inputs.length; j++) {
+        if (isSourceField(inputs[j])) { return inputs[j]; }
+      }
+    }
+    return null;
+  }
+
+  // Assign through the native value setter so any framework binding Sender uses
+  // sees the change. A plain el.value = x can be silently discarded.
+  function setValue(el, val) {
+    if (el.value === val) { return; }
+    var desc = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(el), "value");
+    if (desc && desc.set) { desc.set.call(el, val); } else { el.value = val; }
+    var w = el.ownerDocument.defaultView || window;
+    try {
+      el.dispatchEvent(new w.Event("input", { bubbles: true }));
+      el.dispatchEvent(new w.Event("change", { bubbles: true }));
+    } catch (e) { /* older browser, value is still set */ }
+  }
+
+  function hideRow(el) {
+    var row = el.closest ? el.closest(".sender-form-field") : null;
+    var target = row || el.parentElement || el;
+    if (target.getAttribute("data-rt-hidden") === "1") { return; }
+    target.setAttribute("data-rt-hidden", "1");
+    target.style.setProperty("display", "none", "important");
+  }
+
+  var bound = null;
+
+  function apply() {
+    var el = findField();
+    if (!el) { return false; }
+    setValue(el, RT_SOURCE);
+    hideRow(el);
+
+    // Sender can re-render the form. Re-apply on submit so a re-rendered, empty
+    // field is never what gets posted.
+    if (bound !== el) {
+      bound = el;
+      var form = el.form || (el.closest ? el.closest("form") : null);
+      if (form) {
+        form.addEventListener("submit", function () { setValue(el, RT_SOURCE); }, true);
+      }
+      var d = el.ownerDocument;
+      if (d && d.body && window.MutationObserver) {
+        new MutationObserver(function () { apply(); })
+          .observe(d.body, { childList: true, subtree: true });
+      }
+    }
+    return true;
+  }
+
+  function poll() {
+    apply();
+    if (Date.now() < DEADLINE) { setTimeout(poll, 250); }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", poll);
+  } else {
+    poll();
+  }
+})();
+</script>
 <!-- Cloudflare Web Analytics. No cookies, no cross-site tracking, no personal data. -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c3c701f8454b49b0bb1cb9bfb6cdb28a"}'></script>
 </body>
