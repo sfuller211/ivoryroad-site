@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Real Talk | A free guide for parents of teen boys</title>
-<meta name="description" content="A free guide for parents of teen guys. Simple ways to open conversation without pressure, and what to say when he goes quiet.">
+<title>Real Talk | Two free guides, one for you and one for him</title>
+<meta name="description" content="Two free guides. One for parents of teen guys, one written straight to him. Simple ways to open conversation without pressure, and what to say when he goes quiet.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +31,13 @@
   .fnl__cover{width:clamp(96px,26vw,132px);height:auto;flex:none;border-radius:2px;
     box-shadow:0 6px 20px rgba(26,39,68,.22)}
   .fnl__offer h2{margin-top:0}
+  .fnl__both{font-size:clamp(1.35rem,4.4vw,1.8rem);color:var(--navy);margin:0 0 .5em}
+  .fnl__offer h3{font-family:Lora,serif;font-size:clamp(1.08rem,3.4vw,1.28rem);
+                 color:var(--navy);margin:0 0 .15em}
+  .fnl__for{font-family:Inter,sans-serif;font-size:12px;letter-spacing:.13em;
+            text-transform:uppercase;color:var(--gold-ir);margin:0 0 .7em !important}
+  .fnl__offer .fnl__list{margin-bottom:0}
+  .fnl__rule{border:0;border-top:1px solid rgba(26,39,68,.14);margin:1.5em 0}
   .fnl__series{display:block;width:100%;max-width:420px;height:auto;margin:1.2rem 0 1.6rem;
     border-radius:3px;opacity:.94}
 
@@ -61,52 +68,109 @@
   <h1>He says he&rsquo;s fine.</h1>
 
   <p class="fnl__lede">
-    You know he isn&rsquo;t. You just don&rsquo;t know what to ask next without
+    You know he isn&rsquo;t. You also don&rsquo;t know what to ask next without
     making it worse.
   </p>
 
   <p class="fnl__lede">
-    Most parents of teen guys are not short on love. They are short on entry
-    points. So the conversation stops at the door, and you both let it.
+    He&rsquo;s stuck too. You&rsquo;re short on entry points, he&rsquo;s short on
+    words, and you&rsquo;re both standing on opposite sides of the same silence
+    waiting for the other one to go first.
   </p>
 
-  <!-- PRIMARY ACTION -->
+  <p class="fnl__lede">
+    So there are two guides below. One for you. One written straight to him,
+    which he can read without anybody explaining it. Take one, take both.
+  </p>
+
+  <!-- BOX 1 of 2. Hearts & Home, the parent guide.
+       Its own Sender form, feeding the Hearts and Home group and the six-email
+       parent sequence. Nothing about this box knows the other one exists.
+       If either form is removed, the lede above is lying. -->
   <div class="fnl__card">
+
+    <h2 class="fnl__both">Real Talk: Hearts &amp; Home</h2>
+    <p class="fnl__for">For parents</p>
+    <p>
+      Four small practices for the quiet stretches. Written for busy evenings
+      and long car rides, not for a weekend retreat.
+    </p>
+
     <div class="fnl__offer">
       <img class="fnl__cover" src="/static/images/lm-hearts-home.jpg"
            alt="Cover of Real Talk: Hearts &amp; Home, the free guide for parents of teen guys"
-           width="600" height="776" loading="eager">
+           width="1545" height="2000" loading="eager">
       <div>
-        <h2>Real Talk: Hearts &amp; Home</h2>
-        <p>A free guide for parents of teen guys. Short, practical, and written to be used the same week you read it.</p>
+        <ul class="fnl__list">
+          <li>What &ldquo;fine&rdquo; usually means, and why it is rarely the whole answer</li>
+          <li>Why hard things get said side by side instead of face to face</li>
+          <li>What is underneath the anger when it comes out sideways</li>
+          <li>What he hears from adults in an average week, and what it adds up to</li>
+        </ul>
       </div>
     </div>
-    <ul class="fnl__list">
-      <li>Ways to open a conversation that don&rsquo;t feel like an interrogation</li>
-      <li>Questions that actually go somewhere past &ldquo;fine&rdquo;</li>
-      <li>What to say after a blowup, and what to leave alone</li>
-      <li>How to stay close during the quiet stretches</li>
-    </ul>
 
     <!--
-      SENDER FORM
+      SENDER FORM 1, Hearts and Home.
       Sender renders the form into this div with its own script, so there is no
-      action URL here and no fields to keep in sync. The heading, the email and
-      first name fields, the button text and the post-submit redirect to
-      /rt/thanks/ are all set in Sender > Forms > Hearts and Home signup.
-      That redirect is what makes signups countable in Cloudflare Web Analytics.
+      action URL here and no fields to keep in sync. Field labels, button text
+      and the post-submit redirect to /rt/thanks/ are set in
+      Sender > Forms > Hearts and Home signup.
 
-      Every landing path embeds this same Sender form, so the form itself cannot
-      tell rt-ig from rt-tt. The Source field is filled in by the script at the
-      bottom of this page, which writes the path of the page the visitor is on.
-      Pageviews per path remain the primary measure; the Source field is what
-      carries the channel onto the subscriber record in Sender.
+      Every landing path embeds the same two forms, so the forms themselves
+      cannot tell rt-ig from rt-tt. The Source field is filled in by the script
+      at the bottom of this page, which writes the path of the page the visitor
+      is on. Pageviews per path remain the primary measure; the Source field is
+      what carries the channel onto the subscriber record in Sender.
     -->
     <div class="sender-form-field" data-sender-form-id="{{SENDER_FORM_ID}}"></div>
 
     <p class="fnl__fine">
-      It arrives in your inbox in a minute or two. We&rsquo;ll follow up with a few
-      more things that help, and you can stop them any time.
+      Arrives in a minute or two, from hello@ivoryroad.shop. If it isn&rsquo;t in
+      your inbox, check your spam folder or your promotions tab. We&rsquo;ll
+      follow up with a few more things that help, and you can stop them any time.
+    </p>
+  </div>
+
+  <!-- BOX 2 of 2. Real Talk Tools, the teen guide.
+       SEPARATE form, SEPARATE group, SEPARATE sequence. Someone who wants both
+       fills in both boxes and lands on both lists. That overlap is intended:
+       the two sequences teach different guides to different readers. -->
+  <div class="fnl__card">
+
+    <h2 class="fnl__both">Real Talk Tools</h2>
+    <p class="fnl__for">For teen guys</p>
+    <p>
+      Five printable pages you fill in on your own. No group, no sharing circle,
+      nobody reading over your shoulder.
+    </p>
+
+    <div class="fnl__offer">
+      <img class="fnl__cover" src="/static/images/lm-real-talk-tools.jpg"
+           alt="Cover of Real Talk Tools, the free guide written for teen guys"
+           width="1545" height="2000" loading="lazy">
+      <div>
+        <ul class="fnl__list">
+          <li>A check-in page for figuring out how you&rsquo;re actually doing</li>
+          <li>Small ways to open up without making it a whole thing</li>
+          <li>Sorting what you&rsquo;ve been told about yourself from what&rsquo;s true</li>
+          <li>One-sentence prayers, because simple still counts</li>
+          <li>Scripture cards to print and cut</li>
+        </ul>
+      </div>
+    </div>
+
+    <!--
+      SENDER FORM 2, Real Talk Tools.
+      Different form id, different group, and its post-submit redirect goes to
+      /rt/tools-thanks/ rather than /rt/thanks/, because the two confirmations
+      deliver different files and say different things.
+    -->
+    <div class="sender-form-field" data-sender-form-id="{{TOOLS_FORM_ID}}"></div>
+
+    <p class="fnl__fine">
+      Same deal. Arrives in a minute or two from hello@ivoryroad.shop, and if
+      it isn&rsquo;t in your inbox, check spam. You can stop the emails any time.
     </p>
   </div>
 
@@ -118,7 +182,7 @@
          width="1000" height="1000" loading="lazy">
     <ul>
       <li><a href="/pages/real-talk">See what Real Talk is &rarr;</a></li>
-      <li><a href="/go/amazon/">Find the books on Amazon &rarr;</a></li>
+      <li><a href="/go/amazon/student/">Find the books on Amazon &rarr;</a></li>
     </ul>
   </div>
 
@@ -178,15 +242,20 @@
     return !!(label && label.textContent.trim().toLowerCase() === "source");
   }
 
-  function findField() {
+  // Returns EVERY source field on the page. This used to return only the first
+  // one, which was correct while there was a single form. There are two now, and
+  // a first-match version silently leaves the second form's Source field visible
+  // and empty, which is the exact bug this script was written to fix.
+  function findFields() {
+    var out = [];
     var all = docs();
     for (var i = 0; i < all.length; i++) {
       var inputs = all[i].querySelectorAll("input");
       for (var j = 0; j < inputs.length; j++) {
-        if (isSourceField(inputs[j])) { return inputs[j]; }
+        if (isSourceField(inputs[j])) { out.push(inputs[j]); }
       }
     }
-    return null;
+    return out;
   }
 
   // Assign through the native value setter so any framework binding Sender uses
@@ -210,27 +279,39 @@
     target.style.setProperty("display", "none", "important");
   }
 
-  var bound = null;
+  var bound = [];
+
+  function bind(el) {
+    if (bound.indexOf(el) !== -1) { return; }
+    bound.push(el);
+
+    // Sender can re-render a form. Re-apply on submit so a re-rendered, empty
+    // field is never what gets posted.
+    var form = el.form || (el.closest ? el.closest("form") : null);
+    if (form) {
+      form.addEventListener("submit", function () { setValue(el, RT_SOURCE); }, true);
+    }
+
+    // One observer per document, not one per field. Two forms would otherwise
+    // stack two observers on the same body and run apply() twice per mutation.
+    // setValue and hideRow are both no-ops once applied, so the observer cannot
+    // retrigger itself.
+    var d = el.ownerDocument;
+    if (d && d.body && window.MutationObserver
+        && d.body.getAttribute("data-rt-observed") !== "1") {
+      d.body.setAttribute("data-rt-observed", "1");
+      new MutationObserver(function () { apply(); })
+        .observe(d.body, { childList: true, subtree: true });
+    }
+  }
 
   function apply() {
-    var el = findField();
-    if (!el) { return false; }
-    setValue(el, RT_SOURCE);
-    hideRow(el);
-
-    // Sender can re-render the form. Re-apply on submit so a re-rendered, empty
-    // field is never what gets posted.
-    if (bound !== el) {
-      bound = el;
-      var form = el.form || (el.closest ? el.closest("form") : null);
-      if (form) {
-        form.addEventListener("submit", function () { setValue(el, RT_SOURCE); }, true);
-      }
-      var d = el.ownerDocument;
-      if (d && d.body && window.MutationObserver) {
-        new MutationObserver(function () { apply(); })
-          .observe(d.body, { childList: true, subtree: true });
-      }
+    var els = findFields();
+    if (!els.length) { return false; }
+    for (var i = 0; i < els.length; i++) {
+      setValue(els[i], RT_SOURCE);
+      hideRow(els[i]);
+      bind(els[i]);
     }
     return true;
   }
