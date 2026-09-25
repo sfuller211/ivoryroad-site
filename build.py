@@ -44,10 +44,30 @@ BLOG = "/blogs/real-talk-articles"
 SENDER_ACCOUNT = "7ecfcf84083377"
 SENDER_FORM_ID = "erkw82"
 
-AMAZON_URL    = "https://www.amazon.com/dp/1970494050"
+# Real Talk Tools form. SECOND form on the SAME landing page, feeding its own
+# group and its own sequence. Someone who wants both guides fills in both boxes
+# and ends up on both lists, which is fine and expected.
+# Set this to the form id from Sender > Forms. While it is blank the landing
+# page still builds so the layout can be checked, but the Tools box will have
+# no form in it.
+TOOLS_FORM_ID = "dL946W"
+
+AMAZON_URL    = ("https://www.amazon.com/dp/1970494050"
+                 "?maas=maas_adg_F540919B82FA389CF75AE748C86CBE48_afap_abs"
+                 "&ref_=aa_maas&tag=maas")
                      # Real Talk student book. The other three are surfaced by
-                     # the A+ content on that listing. Plain URL only, never an
-                     # Associates tag: Amazon prohibits Special Links in email.
+                     # the A+ content on that listing.
+                     #
+                     # CORRECTED Sep 25 2026. This previously carried a comment
+                     # saying "plain URL only, never an Associates tag: Amazon
+                     # prohibits Special Links in email." That warning was about
+                     # the ASSOCIATES affiliate programme and was wrongly applied
+                     # here. Amazon Attribution is a separate measurement
+                     # programme with no commission, and Amazon's own guide lists
+                     # Email as one of its six supported channels alongside
+                     # Search, Social, Display, Video and third-party affiliate.
+                     # The maas= parameters below are Attribution, not Associates.
+                     # Verified against advertising.amazon.com, not from memory.
 CARDS_URL     = "https://payhip.com/b/DBwq3"
                      # Real Talk Conversation Cards, $7.99. Highest margin thing
                      # in the funnel: we keep nearly all of it, versus a royalty
@@ -61,6 +81,37 @@ CARDS_URL     = "https://payhip.com/b/DBwq3"
 # The slug, not the ASIN, is what shows up in the Cloudflare pageview report, so
 # the slugs are named after the book. Adding a title means adding a row here and
 # pointing the button at /go/amazon/<slug>/.
+# Amazon Attribution tags, one per Real Talk book. Full list with campaign and
+# ad group ids: 02 Projects/KDP Royalty Tracking/[C] Amazon Attribution Tags - Live.md
+#
+# These are maas= Attribution parameters. They are NOT Associates Special Links;
+# Attribution is a separate programme for measuring your own external traffic.
+# They go only on the per-book /go/amazon/<slug>/ redirects, which are used by
+# website buttons and social landing pages.
+#
+# The generic /go/amazon/ is tagged too. It is printed in Email 5 of the Sender
+# sequence, and Attribution explicitly supports email, so there is nothing to
+# avoid. Do not "fix" it back to a plain URL.
+#
+# Caveat to fix later: these four are the TikTok ivoryroadshop ad groups, because
+# Amazon's publisher list has no website or "other" option. Until per-surface
+# redirects ship, read them as "all tagged traffic from our own site", not as
+# TikTok. Cloudflare per-path pageviews are what tell you the real surface.
+AMAZON_TAGS = {
+    "student":      "F540919B82FA389CF75AE748C86CBE48",
+    "workbook":     "B94210EA2B8C4B111CE38C052F181274",
+    "parent-guide": "CD08A7E6A9E2A0C21196A900D113D584",
+    "leader-guide": "02C04ED91A06FF7B4C84D8455FE86C4A",
+}
+
+def amazon_dest(slug, asin):
+    """Tagged URL for the four Real Talk books, plain URL for everything else."""
+    tag = AMAZON_TAGS.get(slug)
+    if not tag:
+        return "https://www.amazon.com/dp/" + asin
+    return ("https://www.amazon.com/dp/" + asin
+            + "?maas=maas_adg_" + tag + "_afap_abs&ref_=aa_maas&tag=maas")
+
 GO_AMAZON = [
     ("student",             "1970494050"),
     ("workbook",            "1970494077"),
@@ -140,6 +191,9 @@ def build_funnel():
                               ("CARDS_URL", CARDS_URL)) if not v]
     if missing:
         print("  ** funnel: {} still blank in build.py".format(", ".join(missing)))
+    if not TOOLS_FORM_ID:
+        print("  ** funnel: TOOLS_FORM_ID is blank, so the Real Talk Tools box on")
+        print("     the landing page will render without a signup form.")
 
     loader = SENDER_SCRIPT.replace("SENDER_ACCOUNT_ID", SENDER_ACCOUNT)
     landing = (FUNNEL / "landing.html").read_text(encoding="utf-8")
@@ -149,19 +203,22 @@ def build_funnel():
         # only counted as a pageview. See the long comment in landing.html.
         write([path], landing.replace("{{SENDER_SCRIPT}}", loader)
                              .replace("{{SENDER_FORM_ID}}", SENDER_FORM_ID)
+                             .replace("{{TOOLS_FORM_ID}}", TOOLS_FORM_ID)
                              .replace("{{SOURCE}}", path))
 
+    write(["rt", "tools-thanks"], (FUNNEL / "tools-thanks.html").read_text(encoding="utf-8"))
     write(["rt", "thanks"], (FUNNEL / "thanks.html").read_text(encoding="utf-8"))
     go_amazon = (FUNNEL / "go-amazon.html").read_text(encoding="utf-8")
     write(["go", "amazon"], go_amazon.replace("{{AMAZON_URL}}", AMAZON_URL))
     for slug, asin in GO_AMAZON:
         write(["go", "amazon", slug],
-              go_amazon.replace("{{AMAZON_URL}}", "https://www.amazon.com/dp/" + asin))
+              go_amazon.replace("{{AMAZON_URL}}", amazon_dest(slug, asin)))
     write(["go", "cards"], (FUNNEL / "go-cards.html")
           .read_text(encoding="utf-8").replace("{{CARDS_URL}}", CARDS_URL))
 
-    print("  funnel: {} landings + /rt/thanks/ + /go/amazon/ ({} destinations)"
-          " + /go/cards/".format(len(FUNNEL_LANDINGS), len(GO_AMAZON) + 1))
+    print("  funnel: {} landings (2 forms each) + /rt/thanks/ + /rt/tools-thanks/"
+          " + /go/amazon/ ({} destinations) + /go/cards/"
+          .format(len(FUNNEL_LANDINGS), len(GO_AMAZON) + 1))
 
 # ---------------------------------------------------------------- pages
 # (output path, fragment file, <title>, meta description)
@@ -767,6 +824,9 @@ def main():
         # rather than the file directly so the filename can change later
         # without breaking email that has already gone out.
         "/guide                       /static/files/real-talk-hearts-and-home.pdf  301\n"
+        # Real Talk Tools, the teen guide. Same pattern as /guide: a stable short
+        # path so the filename can change without breaking email already sent.
+        "/tools                       /static/files/real-talk-tools.pdf            301\n"
         "/pages/start-here            /pages/real-talk        301\n"
         "/pages/real-talk-resources   /pages/free-guides      301\n"
         "/pages/real-talk-starter-pack /pages/free-guides     301\n"
