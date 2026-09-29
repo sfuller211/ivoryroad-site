@@ -112,6 +112,7 @@ a{color:inherit}
 .quote{max-width:760px;margin:0 auto;text-align:center}
 .quote blockquote{margin:0;font-family:Lora,Georgia,serif;font-style:italic;font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.45;color:var(--navy)}
 .quote cite{display:block;margin-top:1.2rem;font-family:Inter,sans-serif;font-style:normal;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#6b6355}
+.quote + .quote{margin-top:3rem}
 
 /* open routing columns, no boxes */
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(2rem,4vw,3.5rem);margin-top:3rem}
