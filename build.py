@@ -194,6 +194,16 @@ RD_LANDINGS = [
     "rd-ig", "rd-fb", "rd-tt", "rd-pin", "rd-yt",
 ]
 
+# Payhip destinations for Ruby Doodle. The thanks page offers the Cars & Truck
+# bundle (Classic Cars + The Pickup Truck, the two best sellers, Scott's call
+# Oct 3 2026). The shop link goes to the Ruby Doodle collection only, so no
+# Real Talk products show up for a coloring book buyer.
+RD_GO = [
+    ("rd-bundle", "Taking you to the Cars &amp; Truck bundle", "https://payhip.com/b/O4zcP"),
+    ("rd-shop",   "Taking you to the Ruby Doodle shop",
+                  "https://payhip.com/IvoryRoadDigitalShop/collection/ruby-doodle"),
+]
+
 def build_rd_funnel():
     if not (FUNNEL / "rd-landing.html").exists():
         print("  !! no rd-landing.html, skipping Ruby Doodle funnel"); return
@@ -207,7 +217,12 @@ def build_rd_funnel():
                              .replace("{{RD_FORM_ID}}", RD_FORM_ID)
                              .replace("{{SOURCE}}", path))
     write(["rd", "thanks"], (FUNNEL / "rd-thanks.html").read_text(encoding="utf-8"))
-    print("  funnel: {} Ruby Doodle landings + /rd/thanks/".format(len(RD_LANDINGS)))
+    # Outbound Payhip clicks, routed through our own pages so Cloudflare counts them.
+    go_rd = (FUNNEL / "go-rd.html").read_text(encoding="utf-8")
+    for slug, title, url in RD_GO:
+        write(["go", slug], go_rd.replace("{{TITLE}}", title).replace("{{URL}}", url))
+    print("  funnel: {} Ruby Doodle landings + /rd/thanks/ + {} /go/ links"
+          .format(len(RD_LANDINGS), len(RD_GO)))
 
 def build_funnel():
     """Write the standalone funnel pages. Deliberately excluded from sitemap.xml."""
