@@ -178,6 +178,7 @@ FUNNEL_LANDINGS = [
     "rt",                                          # catch-all: signatures, print, anything unlabelled
     "rt-ig", "rt-fb", "rt-tt", "rt-pin", "rt-yt",  # Real Talk content, wherever it posts from
     "ir-ig", "ir-fb", "ir-tt", "ir-pin", "ir-yt",  # Ivory Road brand content
+    "rt-payhip",                                   # Payhip store banner button (Oct 3 2026)
 ]
 
 # Ruby Doodle funnel. Added Oct 2 2026. Same mechanics as Real Talk: one path
@@ -192,6 +193,7 @@ RD_FORM_ID = "eZ6jyJ"   # Sender > Forms > Ruby Doodle signup (group: Ruby Doodl
 RD_LANDINGS = [
     "rd",                                          # catch-all: email, print, anything unlabelled
     "rd-ig", "rd-fb", "rd-tt", "rd-pin", "rd-yt",
+    "rd-payhip",                                   # Payhip store banner button (Oct 3 2026)
 ]
 
 # Payhip destinations for Ruby Doodle. The thanks page offers the Cars & Truck
