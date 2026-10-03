@@ -106,6 +106,8 @@ AMAZON_TAGS = {
 
 def amazon_dest(slug, asin):
     """Tagged URL for the four Real Talk books, plain URL for everything else."""
+    if slug == "payhip-series":   # series page; bare /dp/ opens the Kindle edition
+        return "https://www.amazon.com/dp/" + asin + "?binding=paperback"
     tag = AMAZON_TAGS.get(slug)
     if not tag:
         return "https://www.amazon.com/dp/" + asin
@@ -117,6 +119,7 @@ GO_AMAZON = [
     ("workbook",            "1970494077"),
     ("parent-guide",        "1970494085"),
     ("leader-guide",        "1970494093"),
+    ("payhip-series",       "B0H2SPNRYY"),   # Payhip Real Talk page button (Oct 3 2026): Amazon series page
     ("rd-pickup-truck",     "B0CQF5PRPP"),
     ("rd-classic-cars",     "B0CGT64CRZ"),
     ("rd-falling-leaves",   "B0CLP5YYTG"),
