@@ -171,15 +171,43 @@ SENDER_SCRIPT = """<!-- Sender form loader. Funnel landings only. -->
 # All of these embed the same Sender form, so Sender itself cannot tell them
 # apart. Only Cloudflare can, and only by path.
 #
-# NOT here: Ruby Doodle (/rd-ig /rd-fb /rd-tt /rd-pin /rd-yt). Those must not
-# point at this page. The landing page opens with "He says he's fine" and is
-# about a teenage son; a coloring book follower is the wrong audience for it.
-# Ruby Doodle needs its own destination before any /rd- path is built.
+# NOT here: Ruby Doodle. Those paths point at their OWN page (RD_LANDINGS
+# below), never this one. This page opens with "He says he's fine" and is about
+# a teenage son; a coloring book follower is the wrong audience for it.
 FUNNEL_LANDINGS = [
     "rt",                                          # catch-all: signatures, print, anything unlabelled
     "rt-ig", "rt-fb", "rt-tt", "rt-pin", "rt-yt",  # Real Talk content, wherever it posts from
     "ir-ig", "ir-fb", "ir-tt", "ir-pin", "ir-yt",  # Ivory Road brand content
 ]
+
+# Ruby Doodle funnel. Added Oct 2 2026. Same mechanics as Real Talk: one path
+# per platform, pageviews per path are the attribution, and the same browser
+# script writes the path into the Sender form's hidden Source field.
+# Prefix rd = Ruby Doodle CONTENT, wherever it is posted from. The @rubydoodlebooks
+# accounts on Instagram, TikTok, YouTube, Pinterest and Facebook all use these.
+#
+# Own Sender form, own group ("Ruby Doodle"). No welcome sequence yet, so
+# /rd/thanks/ is the delivery: it hands over the PDF directly.
+RD_FORM_ID = "eZ6jyJ"   # Sender > Forms > Ruby Doodle signup (group: Ruby Doodle, redirect /rd/thanks/)
+RD_LANDINGS = [
+    "rd",                                          # catch-all: email, print, anything unlabelled
+    "rd-ig", "rd-fb", "rd-tt", "rd-pin", "rd-yt",
+]
+
+def build_rd_funnel():
+    if not (FUNNEL / "rd-landing.html").exists():
+        print("  !! no rd-landing.html, skipping Ruby Doodle funnel"); return
+    if not RD_FORM_ID:
+        print("  ** funnel: RD_FORM_ID is blank, so the Ruby Doodle landing page")
+        print("     will render without a signup form.")
+    loader = SENDER_SCRIPT.replace("SENDER_ACCOUNT_ID", SENDER_ACCOUNT)
+    landing = (FUNNEL / "rd-landing.html").read_text(encoding="utf-8")
+    for path in RD_LANDINGS:
+        write([path], landing.replace("{{SENDER_SCRIPT}}", loader)
+                             .replace("{{RD_FORM_ID}}", RD_FORM_ID)
+                             .replace("{{SOURCE}}", path))
+    write(["rd", "thanks"], (FUNNEL / "rd-thanks.html").read_text(encoding="utf-8"))
+    print("  funnel: {} Ruby Doodle landings + /rd/thanks/".format(len(RD_LANDINGS)))
 
 def build_funnel():
     """Write the standalone funnel pages. Deliberately excluded from sitemap.xml."""
@@ -807,6 +835,7 @@ def main():
 
     # funnel (standalone, not added to urls so it stays out of the sitemap)
     build_funnel()
+    build_rd_funnel()
 
     # articles
     arts = load_articles()
@@ -827,6 +856,9 @@ def main():
         # Real Talk Tools, the teen guide. Same pattern as /guide: a stable short
         # path so the filename can change without breaking email already sent.
         "/tools                       /static/files/real-talk-tools.pdf            301\n"
+        # Ruby Doodle free coloring pages, delivered from /rd/thanks/. Same
+        # stable short path pattern as /guide and /tools.
+        "/coloring                    /static/files/ruby-doodle-free-coloring-pages.pdf  301\n"
         "/pages/start-here            /pages/real-talk        301\n"
         "/pages/real-talk-resources   /pages/free-guides      301\n"
         "/pages/real-talk-starter-pack /pages/free-guides     301\n"
