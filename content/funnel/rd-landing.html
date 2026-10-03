@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ruby Doodle | Free coloring pages</title>
+<meta name="description" content="Free coloring pages from the Ruby Doodle coloring books. Print them at home and color at your own pace.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/static/images/ivory-road-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/site.css">
+<style>
+  /* Ruby Doodle funnel page. Same one-job layout as the Real Talk landing,
+     in the Ruby Doodle red instead of navy and gold. */
+  :root{--rd-red:#D70B11;--rd-ink:#3A2A2A}
+  body{background:var(--cream);color:var(--rd-ink)}
+  .fnl{max-width:620px;margin:0 auto;padding:clamp(2.25rem,7vw,4rem) 24px clamp(3rem,8vw,5rem)}
+  .fnl__logo{display:block;width:clamp(170px,46vw,240px);height:auto;margin:0 0 clamp(1.5rem,5vw,2.25rem)}
+  .fnl h1{color:var(--rd-ink);font-size:clamp(2.1rem,7.5vw,3.1rem);margin:0 0 .4em}
+  .fnl__lede{font-size:clamp(1.12rem,3.4vw,1.3rem);line-height:1.6;margin:0 0 1.2em}
+  .fnl__proof{font-size:15px;line-height:1.5;opacity:.75;margin:0 0 1.4em}
+  .fnl__card{background:var(--white);color:var(--rd-ink);border-radius:4px;
+             padding:clamp(1.5rem,5vw,2.25rem);margin:clamp(1.75rem,6vw,2.5rem) 0;
+             box-shadow:0 6px 20px rgba(58,42,42,.1)}
+  .fnl__card h2{font-size:clamp(1.35rem,4.4vw,1.8rem);color:var(--rd-ink);margin:0 0 .5em}
+  .fnl__card p{margin:0 0 1.1em}
+  .fnl__offer{display:flex;gap:clamp(14px,3.5vw,22px);align-items:flex-start;margin-bottom:1.3em}
+  .fnl__cover{width:clamp(110px,30vw,150px);height:auto;flex:none;border-radius:2px;
+              box-shadow:0 6px 20px rgba(58,42,42,.2)}
+  .fnl__list{list-style:none;margin:0;padding:0}
+  .fnl__list li{position:relative;padding-left:1.5em;margin-bottom:.55em;line-height:1.5}
+  .fnl__list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
+                        border-radius:50%;background:var(--rd-red)}
+  /* The form is rendered by Sender's script. Fields, labels, button text and
+     colours live in Sender's form builder, so only the wrapper is styled here. */
+  .sender-form-field{margin:0}
+  .fnl__fine{font-size:14px;line-height:1.5;opacity:.72;margin:.9em 0 0}
+  .fnl__more{border-top:1px solid rgba(58,42,42,.15);margin-top:clamp(2.5rem,7vw,3.5rem);
+             padding-top:clamp(1.75rem,5vw,2.25rem)}
+  .fnl__more p{font-size:15px;opacity:.8;margin:0 0 1em}
+  .fnl__more a{color:var(--rd-red);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+  .fnl__more ul{padding:0;margin:0}
+  .fnl__more li{margin-bottom:.7em;list-style:none}
+  .fnl__covers{display:flex;gap:10px;margin:0 0 1.4rem}
+  .fnl__covers img{width:31%;height:auto;border-radius:2px;box-shadow:0 4px 14px rgba(58,42,42,.16)}
+  .fnl__foot{margin-top:clamp(2.5rem,7vw,3.5rem);font-size:14px;opacity:.6}
+  .fnl__foot a{color:inherit}
+</style>
+{{SENDER_SCRIPT}}
+</head>
+<body>
+<main class="fnl">
+
+  <img class="fnl__logo" src="/static/images/rd-logo.png" alt="Ruby Doodle" width="540" height="230">
+
+  <h1>A few free pages to start with.</h1>
+
+  <p class="fnl__lede">
+    Ruby Doodle books are made for slow, quiet minutes. A warm drink, a favorite
+    set of pencils, and nowhere you need to be.
+  </p>
+
+  <p class="fnl__lede">
+    If you&rsquo;d like to try one before you buy a whole book, these are free.
+  </p>
+
+  <p class="fnl__proof">More than 3,200 Ruby Doodle coloring books sold on Amazon.<br>
+  151 ratings averaging 4.7 stars.</p>
+
+  <div class="fnl__card">
+    <h2>20 free Ruby Doodle coloring pages</h2>
+
+    <div class="fnl__offer">
+      <img class="fnl__cover" src="/static/images/rd-free-coloring-pages.jpg"
+           alt="Cover of the free Ruby Doodle coloring pages, an elephant and a kitten in a meadow"
+           width="1533" height="2000" loading="eager">
+      <ul class="fnl__list">
+        <li>20 coloring pages, pulled from across the Ruby Doodle books</li>
+        <li>Print at home, as many times as you like</li>
+        <li>Good for a quiet evening, or a Saturday with the grandkids</li>
+      </ul>
+    </div>
+
+    <!--
+      SENDER FORM, Ruby Doodle signup.
+      Feeds the Ruby Doodle group only. Never point this at a Real Talk group.
+      Post-submit redirect to /rd/thanks/ is set in Sender's form builder.
+      The hidden Source field is filled by the script at the bottom of the page
+      with the landing path (rd-ig, rd-tt, ...).
+    -->
+    <div class="sender-form-field" data-sender-form-id="{{RD_FORM_ID}}"></div>
+
+    <p class="fnl__fine">
+      Your pages download right away on the next screen. Now and then we&rsquo;ll
+      email you a new page or a new book. You can unsubscribe any time.
+    </p>
+  </div>
+
+  <div class="fnl__more">
+    <p>If you already know what you&rsquo;re looking for:</p>
+    <div class="fnl__covers">
+      <img src="/static/images/rd-pickup-truck.jpg" alt="The Pickup Truck coloring book cover" width="1533" height="2000" loading="lazy">
+      <img src="/static/images/rd-falling-leaves.jpg" alt="Falling Leaves and Cozy Scenes coloring book cover" width="1533" height="2000" loading="lazy">
+      <img src="/static/images/rd-bold-blooms.jpg" alt="Bold Blooms coloring book cover" width="1533" height="2000" loading="lazy">
+    </div>
+    <ul>
+      <li><a href="/pages/ruby-doodle">See all ten Ruby Doodle books &rarr;</a></li>
+      <li><a href="https://www.amazon.com/author/rubydoodle" rel="noopener">Find them on Amazon &rarr;</a></li>
+    </ul>
+  </div>
+
+  <p class="fnl__foot">
+    Ruby Doodle &middot; An Ivory Road collection<br>
+    <a href="/pages/privacy-policy">Privacy</a> &middot; <a href="mailto:hello@ivoryroad.shop">Contact</a>
+  </p>
+
+</main>
+<!--
+  SOURCE ATTRIBUTION
+  Sender fetches the form markup from its CDN and renders it into an iframe
+  after this page has already been built and served, so build-time template
+  substitution can never reach the fields inside it. That is exactly how the
+  Source field came to render visible and empty: its key in Sender's form
+  builder was left as the literal text "{{source}}", in the belief that build.py
+  would substitute it. build.py only ever sees this file.
+
+  So the fill has to happen in the browser, after Sender renders. This script
+  waits for the field, writes the path of the current landing page into it, and
+  hides the row. The field is matched on its label and placeholder rather than
+  its key, so renaming the key in Sender will not break this again.
+
+  RT_SOURCE is substituted by build.py, once per landing path.
+  Copied verbatim from the Real Talk landing page so both funnels behave the same.
+-->
+<script>
+(function () {
+  var RT_SOURCE = "{{SOURCE}}";
+
+  // If build.py did not substitute, do nothing rather than write a placeholder
+  // into every subscriber record.
+  if (!RT_SOURCE || RT_SOURCE.indexOf("{{") === 0) { return; }
+
+  var DEADLINE = Date.now() + 30000;
+
+  function docs() {
+    var list = [document];
+    var frames = document.querySelectorAll("iframe");
+    for (var i = 0; i < frames.length; i++) {
+      try { if (frames[i].contentDocument) { list.push(frames[i].contentDocument); } }
+      catch (e) { /* cross-origin, not ours */ }
+    }
+    return list;
+  }
+
+  function isSourceField(el) {
+    if (!el || el.tagName !== "INPUT") { return false; }
+    var t = (el.type || "").toLowerCase();
+    if (t === "email" || t === "submit" || t === "button" || t === "checkbox") { return false; }
+    var name = (el.getAttribute("name") || "").toLowerCase();
+    var ph = (el.getAttribute("placeholder") || "").toLowerCase();
+    if (name === "firstname" || name === "lastname") { return false; }
+    if (name.indexOf("source") !== -1 || ph === "source") { return true; }
+    var row = el.closest ? el.closest(".sender-form-field") : null;
+    var label = row ? row.querySelector("label") : null;
+    return !!(label && label.textContent.trim().toLowerCase() === "source");
+  }
+
+  // Returns EVERY source field on the page. This used to return only the first
+  // one, which was correct while there was a single form. There are two now, and
+  // a first-match version silently leaves the second form's Source field visible
+  // and empty, which is the exact bug this script was written to fix.
+  function findFields() {
+    var out = [];
+    var all = docs();
+    for (var i = 0; i < all.length; i++) {
+      var inputs = all[i].querySelectorAll("input");
+      for (var j = 0; j < inputs.length; j++) {
+        if (isSourceField(inputs[j])) { out.push(inputs[j]); }
+      }
+    }
+    return out;
+  }
+
+  // Assign through the native value setter so any framework binding Sender uses
+  // sees the change. A plain el.value = x can be silently discarded.
+  function setValue(el, val) {
+    if (el.value === val) { return; }
+    var desc = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(el), "value");
+    if (desc && desc.set) { desc.set.call(el, val); } else { el.value = val; }
+    var w = el.ownerDocument.defaultView || window;
+    try {
+      el.dispatchEvent(new w.Event("input", { bubbles: true }));
+      el.dispatchEvent(new w.Event("change", { bubbles: true }));
+    } catch (e) { /* older browser, value is still set */ }
+  }
+
+  function hideRow(el) {
+    var row = el.closest ? el.closest(".sender-form-field") : null;
+    var target = row || el.parentElement || el;
+    if (target.getAttribute("data-rt-hidden") === "1") { return; }
+    target.setAttribute("data-rt-hidden", "1");
+    target.style.setProperty("display", "none", "important");
+  }
+
+  var bound = [];
+
+  function bind(el) {
+    if (bound.indexOf(el) !== -1) { return; }
+    bound.push(el);
+
+    // Sender can re-render a form. Re-apply on submit so a re-rendered, empty
+    // field is never what gets posted.
+    var form = el.form || (el.closest ? el.closest("form") : null);
+    if (form) {
+      form.addEventListener("submit", function () { setValue(el, RT_SOURCE); }, true);
+    }
+
+    // One observer per document, not one per field. Two forms would otherwise
+    // stack two observers on the same body and run apply() twice per mutation.
+    // setValue and hideRow are both no-ops once applied, so the observer cannot
+    // retrigger itself.
+    var d = el.ownerDocument;
+    if (d && d.body && window.MutationObserver
+        && d.body.getAttribute("data-rt-observed") !== "1") {
+      d.body.setAttribute("data-rt-observed", "1");
+      new MutationObserver(function () { apply(); })
+        .observe(d.body, { childList: true, subtree: true });
+    }
+  }
+
+  function apply() {
+    var els = findFields();
+    if (!els.length) { return false; }
+    for (var i = 0; i < els.length; i++) {
+      setValue(els[i], RT_SOURCE);
+      hideRow(els[i]);
+      bind(els[i]);
+    }
+    return true;
+  }
+
+  function poll() {
+    apply();
+    if (Date.now() < DEADLINE) { setTimeout(poll, 250); }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", poll);
+  } else {
+    poll();
+  }
+})();
+</script>
+<!-- Cloudflare Web Analytics. No cookies, no cross-site tracking, no personal data. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c3c701f8454b49b0bb1cb9bfb6cdb28a"}'></script>
+<!-- Cloudflare Web Analytics. No cookies, no cross-site tracking, no personal data. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c3c701f8454b49b0bb1cb9bfb6cdb28a"}'></script>
+</body>
+</html>
