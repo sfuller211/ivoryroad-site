@@ -508,7 +508,7 @@ FOOTER = [
       ("Facebook","https://www.facebook.com/profile.php?id=61590076012812"),
       ("TikTok","https://www.tiktok.com/@realtalkbookseries")]),
     ("Ruby Doodle", [("Browse the Collection","https://payhip.com/IvoryRoadDigitalShop"),
-                     ("Free Coloring Pages","https://payhip.com/b/EzoB7")], []),
+                     ("Free Coloring Pages","/rd/")], []),
     ("Ivory Road", [("About Us","/pages/about-us"),("Articles",BLOG + "/"),
                     ("Contact","/pages/contact"),("Privacy Policy","/pages/privacy-policy")],
      [("Instagram","https://www.instagram.com/ivoryroadshop"),
@@ -887,7 +887,7 @@ def main():
         "/pages/blog                  /blogs/real-talk-articles/  301\n"
         "/collections/books           /pages/real-talk        301\n"
         "/collections/*               /pages/real-talk        301\n"
-        "/products/free-coloring-pages-by-ruby-doodle  https://payhip.com/b/EzoB7  301\n"
+        "/products/free-coloring-pages-by-ruby-doodle  /rd/  301\n"
         "/products/the-pickup-truck-a-vintage-collection-of-classic-pickups-digital-pages https://payhip.com/b/E1Bgy 301\n"
         "/products/classic-cars-around-the-world-a-coloring-book-for-classic-car-enthusiasts-digital-pages https://payhip.com/b/7OLIQ 301\n"
         "/products/cozy-country-charm-coloring-book-simple-and-serene-escape-to-peaceful-settings-digital-pages https://payhip.com/b/NM0BG 301\n"
@@ -900,7 +900,7 @@ def main():
         "/pages/data-sharing-opt-out  /pages/privacy-policy   301\n"
         "/pages/how-to-use-real-talk-series  /pages/real-talk 301\n"
         "/pages/real-talk-links       /pages/real-talk        301\n"
-        "/pages/20-free-coloring-pages-by-ruby-doodle  https://payhip.com/b/EzoB7  301\n"
+        "/pages/20-free-coloring-pages-by-ruby-doodle  /rd/  301\n"
         "/blogs/walk-talk-down-ivory-road  /blogs/real-talk-articles/  301\n"
         "/blogs/walk-talk-down-ivory-road/*  /blogs/real-talk-articles/  301\n"
         "/pages/faq                   /pages/real-talk        301\n"
