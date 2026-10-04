@@ -197,6 +197,7 @@ RD_LANDINGS = [
     "rd",                                          # catch-all: email, print, anything unlabelled
     "rd-ig", "rd-fb", "rd-tt", "rd-pin", "rd-yt",
     "rd-payhip",                                   # Payhip store banner button (Oct 3 2026)
+    "rd-book",                                      # QR code on the book thank-you insert (Oct 3 2026)
 ]
 
 # Payhip destinations for Ruby Doodle. The thanks page offers the Cars & Truck
