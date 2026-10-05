@@ -208,6 +208,11 @@ RD_GO = [
     ("rd-bundle", "Taking you to the Cars &amp; Truck bundle", "https://payhip.com/b/O4zcP"),
     ("rd-shop",   "Taking you to the Ruby Doodle shop",
                   "https://payhip.com/IvoryRoadDigitalShop/collection/ruby-doodle"),
+    # Welcome email links (Oct 5 2026). Same destinations as above, separate paths
+    # so Cloudflare separates email clicks from thanks-page clicks.
+    ("rd-email-bundle", "Taking you to the Cars &amp; Truck bundle", "https://payhip.com/b/O4zcP"),
+    ("rd-email-shop",   "Taking you to the Ruby Doodle shop",
+                  "https://payhip.com/IvoryRoadDigitalShop/collection/ruby-doodle"),
 ]
 
 def build_rd_funnel():
