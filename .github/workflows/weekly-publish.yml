@@ -13,11 +13,13 @@ name: Weekly publish
 
 on:
   schedule:
-    # 06:00 UTC every Monday = 1:00 AM Central (midnight in winter).
-    # 09:00 UTC is a backup in case the first run is dropped or late.
+    # GitHub often starts scheduled runs 5 to 8 hours late, so these start
+    # early. The build only compares dates, so any run on Monday (UTC)
+    # publishes that Monday's article. 06:17 UTC = 1:17 AM Central (12:17 AM
+    # in winter). 10:43 UTC is a backup. Extra rebuilds are harmless.
     # GitHub runs cron in UTC and does not adjust for daylight saving.
-    - cron: '0 6 * * 1'
-    - cron: '0 9 * * 1'
+    - cron: '17 6 * * 1'
+    - cron: '43 10 * * 1'
   workflow_dispatch:        # lets you publish on demand from the Actions tab
 
 jobs:

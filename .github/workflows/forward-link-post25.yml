@@ -1,0 +1,54 @@
+name: Add Post 25 forward link
+
+# One-off helper. On Oct 26 and 27 2026 it checks whether Post 25 is live.
+# Once live, it adds a link to Post 25 at the end of the Related reading list
+# in Post 3 (hidden-signs-teen-boy-insecurity), commits it, and asks Cloudflare
+# to rebuild. It is safe to run more than once: if the link is already there it
+# does nothing. It can also be run by hand from the Actions tab.
+
+on:
+  schedule:
+    - cron: '17 14,17,20 26,27 10 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-link:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add the link once Post 25 is live
+        run: |
+          SLUG=teenage-son-embarrassed-in-front-of-friends
+          TITLE="What to Do When Your Teen Son Is Embarrassed in Front of Friends"
+          FILE=_export/bodies/hidden-signs-teen-boy-insecurity.html
+
+          if grep -q "$SLUG" "$FILE"; then
+            echo "Link already present. Nothing to do."
+            exit 0
+          fi
+          if ! grep -qi "Related reading" "$FILE"; then
+            echo "::warning::Related reading section not found in $FILE. Link not added."
+            exit 0
+          fi
+
+          page=$(curl -s "https://ivoryroad.shop/blogs/real-talk-articles/$SLUG")
+          if ! echo "$page" | grep -q "Embarrassed in Front of Friends"; then
+            echo "::warning::Post 25 is not live yet. Link not added."
+            exit 0
+          fi
+
+          [ -n "$(tail -c1 "$FILE")" ] && echo >> "$FILE"
+          printf '<p><a href="/blogs/real-talk-articles/%s">%s</a></p>\n' "$SLUG" "$TITLE" >> "$FILE"
+
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add "$FILE"
+          git commit -m "Add forward link to Post 25 from Post 3"
+          git push
+
+          code=$(curl -s -o /dev/null -w '%{http_code}' -X POST "${{ secrets.CF_DEPLOY_HOOK }}")
+          echo "Cloudflare responded $code"
