@@ -285,7 +285,7 @@ PAGES = [
      "Teen boys are hard to read. Real Talk gives you a way back in, and gives him something to work through on his own."),
     ("pages/for-teen-guys",   "for-teen-guys.html",  "For Teen Guys | Real Talk | Ivory Road",
      "Not a textbook. Not a lecture. More like a conversation about the stuff that is hard to say out loud."),
-    ("pages/for-leaders",     "for-leaders.html",    "For Youth Leaders | Real Talk Small Group Curriculum | Ivory Road",
+    ("pages/for-leaders",     "for-leaders.html",    "For Youth Leaders | Real Talk Small Group Curriculum",
      "Twelve session outlines, discussion questions, and facilitator notes for leading teen guys through Real Talk."),
     ("pages/ruby-doodle",     "ruby-doodle.html",    "Ruby Doodle Coloring Books | Ivory Road",
      "Coloring books for people who like to slow down, stay creative, and enjoy a few peaceful minutes."),
@@ -874,6 +874,19 @@ def main():
     build_sitemap(urls)
 
     # Cloudflare Pages redirects (old paths that are NOT being mirrored)
+    (DIST / "404.html").write_text(render(
+        "<h1>That page is not here</h1>"
+        "<p>The link may be old, or the address may have a typo.</p>"
+        "<ul>"
+        "<li><a href=\"/pages/real-talk/\">Real Talk for teen guys</a></li>"
+        "<li><a href=\"/blogs/real-talk-articles/\">Articles for parents</a></li>"
+        "<li><a href=\"/pages/free-guides/\">Free downloads</a></li>"
+        "<li><a href=\"/pages/ruby-doodle/\">Ruby Doodle coloring books</a></li>"
+        "</ul>",
+        "Page not found | Ivory Road",
+        "That page is not here. Here is where to go instead.",
+        SITE + "/"), encoding="utf-8")
+
     (DIST / "_redirects").write_text(
         # Hearts and Home welcome sequence, Email 1. Points at the hosted PDF
         # rather than the file directly so the filename can change later
@@ -885,14 +898,14 @@ def main():
         # Ruby Doodle free coloring pages, delivered from /rd/thanks/. Same
         # stable short path pattern as /guide and /tools.
         "/coloring                    /static/files/ruby-doodle-free-coloring-pages.pdf  301\n"
-        "/pages/start-here            /pages/real-talk        301\n"
-        "/pages/real-talk-resources   /pages/free-guides      301\n"
-        "/pages/real-talk-starter-pack /pages/free-guides     301\n"
-        "/pages/free-resource-library /pages/free-guides      301\n"
-        "/pages/shop-all              /pages/real-talk        301\n"
+        "/pages/start-here            /pages/real-talk/        301\n"
+        "/pages/real-talk-resources   /pages/free-guides/      301\n"
+        "/pages/real-talk-starter-pack /pages/free-guides/     301\n"
+        "/pages/free-resource-library /pages/free-guides/      301\n"
+        "/pages/shop-all              /pages/real-talk/        301\n"
         "/pages/blog                  /blogs/real-talk-articles/  301\n"
-        "/collections/books           /pages/real-talk        301\n"
-        "/collections/*               /pages/real-talk        301\n"
+        "/collections/books           /pages/real-talk/        301\n"
+        "/collections/*               /pages/real-talk/        301\n"
         "/products/free-coloring-pages-by-ruby-doodle  /rd/  301\n"
         "/products/the-pickup-truck-a-vintage-collection-of-classic-pickups-digital-pages https://payhip.com/b/E1Bgy 301\n"
         "/products/classic-cars-around-the-world-a-coloring-book-for-classic-car-enthusiasts-digital-pages https://payhip.com/b/7OLIQ 301\n"
@@ -901,20 +914,23 @@ def main():
         "/products/tale-of-two-a-celebration-of-unique-friendships-coloring-book-digital-pages https://payhip.com/b/REnX9 301\n"
         "/products/toddlers-animal-coloring-book-fun-and-educational-bilingual-english-spanish-digital-pages-copy https://payhip.com/b/YVZJH 301\n"
         "/products/digital-bundle-the-master-collection-coloring-pages https://payhip.com/b/ME1vx 301\n"
-        "/products/*                  /pages/ruby-doodle      301\n"
-        "/pages/dr-scott-fuller       /pages/about-us         301\n"
-        "/pages/data-sharing-opt-out  /pages/privacy-policy   301\n"
-        "/pages/how-to-use-real-talk-series  /pages/real-talk 301\n"
-        "/pages/real-talk-links       /pages/real-talk        301\n"
+        "/products/real-talk-hearts-and-home  /pages/hearts-and-home/  301\n"
+        "/products/real-talk-tools-free-starter-pack-for-teen-guys-pdf  /pages/real-talk-tools/  301\n"
+        "/products/real-talk-*        /pages/real-talk/       301\n"
+        "/products/*                  /pages/ruby-doodle/      301\n"
+        "/pages/dr-scott-fuller       /pages/about-us/         301\n"
+        "/pages/data-sharing-opt-out  /pages/privacy-policy/   301\n"
+        "/pages/how-to-use-real-talk-series  /pages/real-talk/ 301\n"
+        "/pages/real-talk-links       /pages/real-talk/        301\n"
         "/pages/20-free-coloring-pages-by-ruby-doodle  /rd/  301\n"
         "/blogs/walk-talk-down-ivory-road  /blogs/real-talk-articles/  301\n"
         "/blogs/walk-talk-down-ivory-road/*  /blogs/real-talk-articles/  301\n"
-        "/pages/faq                   /pages/real-talk        301\n"
+        "/pages/faq                   /pages/real-talk/        301\n"
         "/pages/floral                /                       301\n"
         "/pages/lifestyle             /                       301\n"
         "/pages/studio-work           /                       301\n"
         "/pages/inspiration           /                       301\n"
-        "/pages/for-youth-pastors /pages/for-leaders 301\n"
+        "/pages/for-youth-pastors /pages/for-leaders/ 301\n"
         "/blogs/real-talk-articles/when-teen-son-feels-alone  /blogs/real-talk-articles/teen-boy-loneliness-what-god-sees  301\n",
         encoding="utf-8")
 
