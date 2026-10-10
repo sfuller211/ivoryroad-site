@@ -53,7 +53,7 @@ SENDER_FORM_ID = "erkw82"
 TOOLS_FORM_ID = "dL946W"
 
 AMAZON_URL    = ("https://www.amazon.com/dp/1970494050"
-                 "?maas=maas_adg_F540919B82FA389CF75AE748C86CBE48_afap_abs"
+                 "?maas=maas_adg_6B1C3F4C5ADAC1BBFDFBBF0FB3CD2B71_afap_abs"
                  "&ref_=aa_maas&tag=maas")
                      # Real Talk student book. The other three are surfaced by
                      # the A+ content on that listing.
@@ -93,15 +93,15 @@ CARDS_URL     = "https://payhip.com/b/DBwq3"
 # sequence, and Attribution explicitly supports email, so there is nothing to
 # avoid. Do not "fix" it back to a plain URL.
 #
-# Caveat to fix later: these four are the TikTok ivoryroadshop ad groups, because
+# UPDATED Oct 10 2026: these four are now the 'Website - ivoryroad.shop' ad groups (publisher TikTok, only because Amazon has no website option). Real TikTok keeps its own tags. OLD NOTE: these four were the TikTok ivoryroadshop ad groups, because
 # Amazon's publisher list has no website or "other" option. Until per-surface
 # redirects ship, read them as "all tagged traffic from our own site", not as
 # TikTok. Cloudflare per-path pageviews are what tell you the real surface.
 AMAZON_TAGS = {
-    "student":      "F540919B82FA389CF75AE748C86CBE48",
-    "workbook":     "B94210EA2B8C4B111CE38C052F181274",
-    "parent-guide": "CD08A7E6A9E2A0C21196A900D113D584",
-    "leader-guide": "02C04ED91A06FF7B4C84D8455FE86C4A",
+    "student":      "6B1C3F4C5ADAC1BBFDFBBF0FB3CD2B71",
+    "workbook":     "82068FEE6C4D6756320DC4FDCF60E617",
+    "parent-guide": "0985AB7FD12358FA7C0F74F48C9561AD",
+    "leader-guide": "ED59AC583630571A05B01E751B36D8A5",
 }
 
 def amazon_dest(slug, asin):
