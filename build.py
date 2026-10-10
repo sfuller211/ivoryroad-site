@@ -531,6 +531,7 @@ SHELL = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<meta name="p:domain_verify" content="7592345da59ea2f7ce6a536dd7e71500">
 <link rel="canonical" href="{canonical}">
 <meta property="og:type" content="{ogtype}">
 <meta property="og:title" content="{title}">
