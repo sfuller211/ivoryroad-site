@@ -277,10 +277,10 @@ def build_funnel():
 # ---------------------------------------------------------------- pages
 # (output path, fragment file, <title>, meta description)
 PAGES = [
-    ("",                      "home.html",           "Ivory Road | Faith-Based Books for Teen Boys & Coloring Books",
-     "Faith-based resources for teen boys and their families, and creative coloring books for all ages."),
+    ("",                      "home.html",           "Ivory Road | Real Talk Books for Teen Boys & Ruby Doodle Coloring Books",
+     "Home of Real Talk, faith-based books helping teen boys grow in identity, confidence and faith, and Ruby Doodle coloring books. Free guides for families."),
     ("pages/real-talk",       "real-talk.html",      "Real Talk | Faith-Based Books for Teen Boys | Ivory Road",
-     "A faith-based series for teen guys on identity, emotions, confidence, relationships, and real-life faith."),
+     "Faith-based books helping teen boys grow in identity, confidence, character and everyday faith. For parents, family, mentors, and gifts."),
     ("pages/for-parents",     "for-parents.html",    "For Parents | Real Talk | Ivory Road",
      "Teen boys are hard to read. Real Talk gives you a way back in, and gives him something to work through on his own."),
     ("pages/for-teen-guys",   "for-teen-guys.html",  "For Teen Guys | Real Talk | Ivory Road",
