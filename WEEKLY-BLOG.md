@@ -18,16 +18,18 @@ description, and the Article structured data. You never edit those by hand.
 
 ## The metadata row
 
-Seven tab-separated columns:
+Nine tab-separated columns:
 
 ```
-handle  published  status  image_url  alt  title  topic
+handle  published  status  image_url  alt  title  topic  seo_title  meta_description
 ```
 
 - **handle** is the URL slug and must match the body filename and the image filename
 - **published** is `YYYY-MM-DD`
 - **status** is `live`, `scheduled`, or `draft`
 - **image_url** is only kept for reference; the build uses the local image
+- **seo_title** is the page `<title>` that shows in search results. Keep it to 60 characters or fewer, lead with the phrase a parent would type, no brand suffix. The article H1 stays as **title**.
+- **meta_description** is the search snippet. 155 characters or fewer. Say what the post is about and who it helps. Do not paste the opening lines of the post. If either column is blank the build falls back to the old behavior (title plus " | Ivory Road", description from the first paragraph).
 - **topic** must be one of: Identity, Emotions, Confidence, Faith, Relationships,
   Connection, Behind the Series
 

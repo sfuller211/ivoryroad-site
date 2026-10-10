@@ -687,9 +687,13 @@ def build_articles(arts):
 </section>
 """.format(blog=BLOG, title=html.escape(a["title"]), date=pretty_date(a["published"]),
            img=a["img"], alt=html.escape(a["alt"]), content=a["body"])
-        desc = summarize(a["body"])
+        # Optional columns: seo_title (<=60 chars, replaces "<title> | Ivory Road")
+        # and meta_description (<=155 chars, says what the post is about).
+        # Fall back to the old behavior when a row leaves them blank.
+        desc = (a.get("meta_description") or "").strip() or summarize(a["body"])
+        seo_title = (a.get("seo_title") or "").strip() or (a["title"] + " | Ivory Road")
         write([BLOG.strip("/"), a["handle"]],
-              render(body, a["title"] + " | Ivory Road", desc,
+              render(body, seo_title, desc,
                      SITE + url, ogtype="article", ogimage=a["img"],
                      subnav=BLOG.strip("/"), published=a["published"],
                      schema=article_schema(a, url, desc)))
