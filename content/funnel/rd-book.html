@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}} | Ruby Doodle</title>
+<meta name="description" content="{{DESC}}">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/static/images/ivory-road-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/site.css">
+<style>
+  :root{--rd-red:#D70B11;--rd-ink:#3A2A2A}
+  body{background:var(--cream);color:var(--rd-ink);margin:0}
+  /* Hidden Pinterest landing page for one Ruby Doodle book. noindex, not linked
+     from the site, not in sitemap.xml. To make it public later: remove the
+     robots meta above, add the path to the sitemap, and link it from
+     /pages/ruby-doodle/. The URL stays the same, so pins keep working. */
+  .bk{max-width:560px;margin:0 auto;padding:clamp(2rem,8vw,3.5rem) 24px}
+  .bk__logo{display:block;width:clamp(130px,36vw,170px);height:auto;margin:0 auto clamp(1.25rem,4vw,1.75rem)}
+  .bk__cover{display:block;width:min(70%,280px);height:auto;margin:0 auto clamp(1.5rem,5vw,2rem);
+             border-radius:3px;box-shadow:0 10px 28px rgba(58,42,42,.22)}
+  .bk h1{color:var(--rd-ink);font-size:clamp(1.7rem,6vw,2.4rem);margin:0 0 .4em;text-align:center}
+  .bk__by{text-align:center;margin:0 0 1.2em;opacity:.75;font-size:15px}
+  .bk p.bk__desc{font-size:clamp(1.05rem,3.2vw,1.15rem);line-height:1.65;margin:0 0 1.6em;text-align:center}
+  .bk__btns{display:grid;gap:.8rem;margin:0 0 1.4rem}
+  .bk__btn{display:block;text-align:center;text-decoration:none;font-family:Inter,sans-serif;font-weight:600;
+           font-size:clamp(1rem,3vw,1.1rem);border-radius:3px;padding:clamp(.9rem,3vw,1.05rem) 1.25rem}
+  .bk__btn--pdf{background:var(--rd-red);color:#fff;border:2px solid var(--rd-red)}
+  .bk__btn--print{background:#fff;color:var(--rd-red);border:2px solid var(--rd-red)}
+  .bk__note{text-align:center;font-size:15px;opacity:.8;margin:0 0 2rem}
+  .bk__more{border-top:1px solid rgba(58,42,42,.15);padding-top:1.5rem;font-size:15px;text-align:center}
+  .bk__more a{color:var(--rd-red);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+<main class="bk">
+  <img class="bk__logo" src="/static/images/rd-logo.png" alt="Ruby Doodle" width="540" height="230">
+  <img class="bk__cover" src="{{COVER}}" alt="{{TITLE}} coloring book cover">
+  <h1>{{TITLE}}</h1>
+  <p class="bk__by">A Ruby Doodle coloring book</p>
+  <p class="bk__desc">{{BLURB}}</p>
+  <div class="bk__btns">
+    <a class="bk__btn bk__btn--pdf" href="/go/{{SLUG}}-pdf/">Digital PDF Download</a>
+    <a class="bk__btn bk__btn--print" href="/go/{{SLUG}}-print/">Print Edition from Amazon</a>
+  </div>
+  <p class="bk__note">Print or digital, whichever you prefer.</p>
+  <div class="bk__more">
+    <p>Not sure yet? <a href="/rd-pin/">Try 20 free coloring pages first</a>, two from every Ruby Doodle book.</p>
+  </div>
+</main>
+<!-- Cloudflare Web Analytics. No cookies, no cross-site tracking, no personal data. -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c3c701f8454b49b0bb1cb9bfb6cdb28a"}'></script>
+</body>
+</html>

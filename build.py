@@ -235,6 +235,38 @@ def build_rd_funnel():
     print("  funnel: {} Ruby Doodle landings + /rd/thanks/ + {} /go/ links"
           .format(len(RD_LANDINGS), len(RD_GO)))
 
+# Hidden per-book Pinterest landing pages (added Nov 2 2026). Same idea as the
+# rd-* funnel pages: standalone, noindex, not linked from the site, not in the
+# sitemap. One page per book at /ruby-doodle/<slug>/ with both buying options.
+# Each button goes through its own /go/ page so Cloudflare counts the clicks.
+# To make a page public later: remove the noindex meta in content/funnel/rd-book.html,
+# add the path to the sitemap, and link it from /pages/ruby-doodle/.
+RD_BOOKS = [
+    # slug, title, cover image, blurb, Payhip URL, Amazon ASIN
+    ("classic-cars", "Classic Cars Around the World", "/static/images/rd-classic-cars.jpg",
+     "20 detailed illustrations, from sleek European models to rugged American classics. Travel the globe one page at a time.",
+     "https://payhip.com/b/7OLIQ", "B0CGT64CRZ"),
+]
+
+def build_rd_books():
+    tpl = FUNNEL / "rd-book.html"
+    if not tpl.exists():
+        print("  !! no rd-book.html, skipping Ruby Doodle book pages"); return
+    tpl_html = tpl.read_text(encoding="utf-8")
+    go_rd = (FUNNEL / "go-rd.html").read_text(encoding="utf-8")
+    for slug, title, cover, blurb, payhip, asin in RD_BOOKS:
+        write(["ruby-doodle", slug],
+              tpl_html.replace("{{TITLE}}", html.escape(title))
+                      .replace("{{DESC}}", html.escape(blurb, quote=True))
+                      .replace("{{COVER}}", cover)
+                      .replace("{{BLURB}}", html.escape(blurb))
+                      .replace("{{SLUG}}", "rd-" + slug))
+        write(["go", "rd-" + slug + "-pdf"],
+              go_rd.replace("{{TITLE}}", "Taking you to the PDF download").replace("{{URL}}", payhip))
+        write(["go", "rd-" + slug + "-print"],
+              go_rd.replace("{{TITLE}}", "Taking you to Amazon").replace("{{URL}}", "https://www.amazon.com/dp/" + asin))
+    print("  Ruby Doodle book pages: {} (hidden, 2 /go/ links each)".format(len(RD_BOOKS)))
+
 def build_funnel():
     """Write the standalone funnel pages. Deliberately excluded from sitemap.xml."""
     if not FUNNEL.exists():
@@ -867,6 +899,7 @@ def main():
     # funnel (standalone, not added to urls so it stays out of the sitemap)
     build_funnel()
     build_rd_funnel()
+    build_rd_books()
 
     # articles
     arts = load_articles()
