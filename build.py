@@ -243,7 +243,7 @@ def build_rd_funnel():
 # add the path to the sitemap, and link it from /pages/ruby-doodle/.
 RD_BOOKS = [
     # slug, title, cover image, blurb, Payhip URL, Amazon ASIN
-    ("classic-cars", "Classic Cars Around the World", "/static/images/rd-classic-cars.jpg",
+    ("classic-cars", "Classic Cars Around the World", "/static/images/rd-cover-classic-cars.jpg",
      "20 detailed illustrations, from sleek European models to rugged American classics. Travel the globe one page at a time.",
      "https://payhip.com/b/7OLIQ", "B0CGT64CRZ"),
 ]
