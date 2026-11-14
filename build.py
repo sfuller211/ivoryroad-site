@@ -603,6 +603,8 @@ SHELL = """<!doctype html>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/css/site.css">
 <link rel="alternate" type="application/rss+xml" title="Real Talk Articles" href="/blogs/real-talk-articles/feed.xml">
+<!-- Metricool web analytics (Ivory Road brand). Added Nov 14 2026. -->
+<script>function loadScript(a){{var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}}loadScript(function(){{beTracker.t({{hash:"1f9faf14913029b299f96dfb57f4f9c5"}})}});</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
