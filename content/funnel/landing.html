@@ -6,15 +6,14 @@
 <title>Real Talk | Two free guides, one for you and one for him</title>
 <meta name="description" content="Two free guides. One for parents of teen guys, one written straight to him. Simple ways to open conversation without pressure, and what to say when he goes quiet.">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet">
+<link rel="preload" href="/static/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/fonts/lora-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css">
 <style>
   /* Funnel page only. Mobile-first, one job. */
   body{background:var(--cream);color:var(--black)}
   .fnl{max-width:620px;margin:0 auto;padding:clamp(2.25rem,7vw,4rem) 24px clamp(3rem,8vw,5rem)}
-  .fnl__mark{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  .fnl__mark{font-family:Inter,"Inter Fallback",sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
              color:var(--gold-ir);margin:0 0 clamp(1.75rem,5vw,2.5rem)}
   .fnl h1{color:var(--navy);font-size:clamp(2.1rem,7.5vw,3.1rem);margin:0 0 .4em}
   .fnl__lede{font-size:clamp(1.12rem,3.4vw,1.3rem);line-height:1.6;color:var(--black);margin:0 0 1.4em}
@@ -32,9 +31,9 @@
     box-shadow:0 6px 20px rgba(26,39,68,.22)}
   .fnl__offer h2{margin-top:0}
   .fnl__both{font-size:clamp(1.35rem,4.4vw,1.8rem);color:var(--navy);margin:0 0 .5em}
-  .fnl__offer h3{font-family:Lora,serif;font-size:clamp(1.08rem,3.4vw,1.28rem);
+  .fnl__offer h3{font-family:Lora,"Lora Fallback",serif;font-size:clamp(1.08rem,3.4vw,1.28rem);
                  color:var(--navy);margin:0 0 .15em}
-  .fnl__for{font-family:Inter,sans-serif;font-size:12px;letter-spacing:.13em;
+  .fnl__for{font-family:Inter,"Inter Fallback",sans-serif;font-size:12px;letter-spacing:.13em;
             text-transform:uppercase;color:var(--gold-ir);margin:0 0 .7em !important}
   .fnl__offer .fnl__list{margin-bottom:0}
   .fnl__rule{border:0;border-top:1px solid rgba(26,39,68,.14);margin:1.5em 0}
