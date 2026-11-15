@@ -598,9 +598,8 @@ SHELL = """<!doctype html>
 <meta property="og:url" content="{canonical}">
 {ogimage}<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/static/images/ivory-road-logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/static/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/fonts/lora-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css">
 <link rel="alternate" type="application/rss+xml" title="Real Talk Articles" href="/blogs/real-talk-articles/feed.xml">
 <!-- Metricool web analytics (Ivory Road brand). Added Nov 14 2026. -->
