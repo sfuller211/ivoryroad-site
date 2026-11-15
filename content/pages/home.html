@@ -7,7 +7,11 @@
       <a class="btn" href="/pages/real-talk">Discover Real Talk</a>
       <a class="btn btn--ghost" href="/pages/ruby-doodle">Discover Ruby Doodle</a>
     </div>
-    <div class="hero__media"><img src="/static/images/hero-home.jpg" alt="Warm entryway of a home, sunlight across the floor" width="1600" height="700"></div>
+    <div class="hero__media"><picture>
+      <source media="(max-width:640px)" srcset="/static/images/hero-home-mobile.webp" type="image/webp">
+      <source srcset="/static/images/hero-home.webp" type="image/webp">
+      <img src="/static/images/hero-home.jpg" alt="Warm entryway of a home, sunlight across the floor" width="1200" height="675" fetchpriority="high">
+    </picture></div>
   </div>
 </section>
 
